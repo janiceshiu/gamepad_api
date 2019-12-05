@@ -209,16 +209,44 @@ function gamepadConnectedToTheSystem() {
 
 // --- section break --- //
 
-// When the gamepad service is notified that a gamepad has been disconnected from the system, the user agent MUST perform the following steps:
+function gamepadDisconnectedFromTheSystem() {
+  // When the gamepad service is notified that a gamepad has been disconnected from the system, the user agent MUST perform the following steps:
 
-//  1. Let |now| be a DOMHighResTimeStamp value representing the current time.
-//  1. Let |gamepad| be the item in connectedGamepads representing the disconnected gamepad.
-//  1. Set connectedGamepads[gamepad.index] = null.
-//  1. For each consumer, consumerInfo in consumerInfoMap:
-//    1. If consumerInfo.isActive and consumerInfo.hasGesture are both true:
-//      1. Let |eventGamepad| be a copy of gamepad.
-//      1. Set eventGamepad.timestamp to the elapsed duration between the navigationStart attribute of the PerformanceTiming interface and now.
-//      1. Dispatch gamepaddisconnected for eventGamepad on consumer.
+  now = Date.now(); // Let |now| be a DOMHighResTimeStamp value representing the current time.
+
+  // HELP: how do i get the `gamepad` object? self? get by ID?
+  gamepad = {index: 1} // 2. Let |gamepad| be the item in connectedGamepads representing the disconnected gamepad.
+
+  gamepadServiceState.connectedGamepads[gamepad.index] = null;
+  // 3. Set connectedGamepads[gamepad.index] = null.
+
+  // HELP: how to get each consumer. still confused with consumer
+  //  4. For each consumer, consumerInfo in consumerInfoMap:
+
+  if (gamepadServiceState.consumerInfo.isActive === true && gamepadServiceState.consumerInfo.hasGesture === true) {
+    // HELP: is this `consumerInfo` from `gamepadServiceState` or from somewhere else?
+    // 4.1. If consumerInfo.isActive and consumerInfo.hasGesture are both true:
+
+    /*
+    HELP: what does `be a copy mean`? is it:
+    * deep copy - make an entirely new clone of `gamepad`. both variables reference different memory locations
+    * shallow copy - `gamepad` and `eventGamepad` reference the same memory location
+
+    also - any concerns around references being lost, etc?
+    */
+    // 4.1.1 Let |eventGamepad| be a copy of gamepad.
+    eventGamepad = gamepad;
+
+    // HELP: more concerns around deep/shallow copy here. also what's the different between different timestamp keys in different objects?
+    // HELP: how to get PerformanceTiming?
+    eventGamepad.timestamp = (performanceTiming.navigationStart - now); // 4.1.2. Set eventGamepad.timestamp to the elapsed duration between the navigationStart attribute of the PerformanceTiming interface and now.
+
+    // 4.1.3. Dispatch gamepaddisconnected for eventGamepad on consumer.
+    // not sure how to do this. also who is the consumer? window? navigator?
+  }
+}
+
+// --- section break --- //
 
 // When the gamepad service is notified that new data has been received from a gamepad, the user agent MUST perform the following steps:
 
