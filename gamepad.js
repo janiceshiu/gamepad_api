@@ -145,35 +145,69 @@ function gamepadConsumerBecomesInactive(gamepadServiceState) {
 
 // --- section break --- //
 
-// When a gamepad consumer is removed, the user agent MUST perform the following steps:
+function removeGamepadConsumer(gamepadServiceState) {
+  // When a gamepad consumer is removed, the user agent MUST perform the following steps:
 
-//  1. Delete the map entry in consumerInfoMap with the consumer as its key.
-//  1. If consumer is a key in inactiveConsumerMap:
-//    1. Delete the map entry in inactiveConsumerMap with consumer as its key.
+  // HELP: need to clarify what is key `consumer` first before I can go further
+  gamepadServiceState.consumerInfoMap.delete(consumer) // 1. Delete the map entry in consumerInfoMap with the consumer as its key.
+  // HELP: do we care if for whatever reason this consumer key isn't in consumerInfoMap?
 
-// When the gamepad service is notified that a gamepad has been connected to the system, the user agent MUST perform the following steps:
+  // 2. If consumer is a key in inactiveConsumerMap:
+  // 2.1 Delete the map entry in inactiveConsumerMap with consumer as its key.
+  // note: JS returns `false` if the key to delete isn't in the map. so we don't have to do the `if key exists, then only try to delete it` check.
+  // HELP: okay to do this?
+  gamepadServiceState.inactiveConsumerMap.delete(consumer)
+}
 
-//  1. Let |gamepadInfo| be a new {{GamepadInfo}} object.
-//  1. Let gamepadInfo.id be a string identifying the gamepad.
-//  1. Let |buttonCount| be the number of buttons on the gamepad.
-//  1. Initialize gamepadInfo.buttonState to a new sequence<GamepadButton> with length buttonCount.
-//  1. For each button in gamepadInfo.buttonState:
-//    1. Initialize button.value to 0.0.
-//    1. Initialize button.pressed to false.
-//  1. Let |axisCount| be the number of axes on the gamepad.
-//  1. Initialize gamepadInfo.axisState to a new Array<double> with length axisCount.
-//  1. For each axis in gamepadInfo.axisState:
-//    1. Initialize axis to 0.0.
-//  1. Initialize gamepadInfo.timestamp to a DOMHighResTimeStamp value representing the current time.
-//  1. Initialize gamepadInfo.mapping to an empty string.
-//  1. If the gamepad is recognized by the user agent and the user agent has reordered buttons and axes to match the Standard Gamepad:
-//    1. Set gamepadInfo.mapping to "standard".
-//  1. Let |gamepadIndex| be the index of the first null entry in connectedGamepads, starting at index 0.
-//    1. If there are no null entries in connectedGamepads, extend the length of the vector by 1 and let gamepadIndex be the index of the last item.
-//  1. Set connectedGamepads[gamepadIndex] = gamepadInfo.
-//  1. For each consumer, consumerInfo in consumerInfoMap:
-//    1. If consumerInfo.isActive and consumerInfo.hasGesture are both true:
-//      1. Notify the consumer about the connected gamepad (TODO)
+class Button {
+  constructor() {
+    this.value = 0.0, // 5.1 Initialize button.value to 0.0.
+    this.pressed = false // 5.2 Initialize button.pressed to false.
+  }
+}
+
+class gamepadInfo {
+  constructor(buttonCount, axisCount){
+    this.id = "gamepad_1", // 2. Let gamepadInfo.id be a string identifying the gamepad
+    this.buttonState = new Array(buttonCount) // 4. Initialize gamepadInfo.buttonState to a new sequence<GamepadButton> with length buttonCount.
+
+    // move into an initialiseButtons() fn?
+    for (button in buttonState) { // 5. For each button in gamepadInfo.buttonState:
+      button = new Button();
+    }
+  }
+}
+
+function gamepadConnectedToTheSystem() {
+  // When the gamepad service is notified that a gamepad has been connected to the system, the user agent MUST perform the following steps:
+
+  gamepadInfo = new GamepadInfo(buttonCount) // 1. Let |gamepadInfo| be a new {{GamepadInfo}} object.
+  buttonCount = 5 // 3. Let |buttonCount| be the number of buttons on the gamepad.
+  axisCount = 2 // 6. Let |axisCount| be the number of axes on the gamepad
+
+  this.axisState = new Array(axisCount) // 7. Initialize gamepadInfo.axisState to a new Array<double> with length axisCount.
+
+  // move into an initialiseAxes() fn? // also - plural of axis = axes
+  for (axis in axisState) { // 8. For each axis in gamepadInfo.axisState:
+    axis = 0.0 // 8.1 Initialize axis to 0.0.
+  }
+
+    // check whether this fits the typdef @ https://www.w3.org/TR/hr-time/#dom-domhighrestimestamp
+    this.timestamp = Date.now() // 9. Initialize gamepadInfo.timestamp to a DOMHighResTimeStamp value representing the current time.
+    this.mapping = "" // 10. Initialize gamepadInfo.mapping to an empty string.
+
+    // HELP: ???
+    //  1. If the gamepad is recognized by the user agent and the user agent has reordered buttons and axes to match the Standard Gamepad:
+    //    1. Set gamepadInfo.mapping to "standard".
+    //  1. Let |gamepadIndex| be the index of the first null entry in connectedGamepads, starting at index 0.
+    //    1. If there are no null entries in connectedGamepads, extend the length of the vector by 1 and let gamepadIndex be the index of the last item.
+    //  1. Set connectedGamepads[gamepadIndex] = gamepadInfo.
+    //  1. For each consumer, consumerInfo in consumerInfoMap:
+    //    1. If consumerInfo.isActive and consumerInfo.hasGesture are both true:
+    //      1. Notify the consumer about the connected gamepad (TODO)
+}
+
+// --- section break --- //
 
 // When the gamepad service is notified that a gamepad has been disconnected from the system, the user agent MUST perform the following steps:
 
