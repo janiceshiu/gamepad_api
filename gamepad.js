@@ -33,13 +33,22 @@
 //   DOMHighResTimestamp timestamp;
 // };
 
-// To start the gamepad service, the user agent MUST perform the following steps:
+function startGamepadService() {
+  // To start the gamepad service, the user agent MUST perform the following steps:
+  if (gamepadServiceState === null) { // 1. If gamepadServiceState is null:
+    gamepadServiceState = new GamepadServiceState() // 1.1 Initialize gamepadServiceState to a new instance of GamepadServiceState.
+  }
+}
 
-//  1. If gamepadServiceState is null:
-//    1. Initialize gamepadServiceState to a new instance of GamepadServiceState.
-//    1. Initialize gamepadServiceState.consumerInfoMap to an empty map.
-//    1. Initialize gamepadServiceState.inactiveConsumerMap to an empty map.
-//    1. Initialize gamepadServiceState.connectedGamepads to an empty sequence of {{GamepadInfo}}.
+class GamepadServiceState {
+  constructor(){
+    this.consumerInfoMap = new Map(); // 1.2 Initialize gamepadServiceState.consumerInfoMap to an empty map.
+    this.inactiveConsumerMap = new Map(); // 1.3 Initialize gamepadServiceState.inactiveConsumerMap to an empty map.
+    this.connectedGamepads = []; // 1.4 Initialize gamepadServiceState.connectedGamepads to an empty sequence of {{GamepadInfo}}
+  }
+}
+
+// --- section break --- //
 
 // Todo: define “becomes active”.
 
