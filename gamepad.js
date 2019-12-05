@@ -121,12 +121,29 @@ function gamepadConsumerBecomesActive(gamepadServiceState) {
 
 // --- section break --- //
 
-// When a gamepad consumer becomes inactive, the user agent MUST perform the following steps:
+function gamepadConsumerBecomesInactive(gamepadServiceState) {
+  // When a gamepad consumer becomes inactive, the user agent MUST perform the following steps:
 
-//  1. Let |consumerInfo| = consumerInfoMap[consumer].
-//  1. Set |consumerInfo|.isActive = false.
-//  1. Let |lastConnectedGamepads| be a copy of connectedGamepads.
-//  1. Insert |lastConnectedGamepads| into |inactiveConsumerMap| with key consumer.
+    // HELP: who/what is consumer?
+    consumerInfo = gamepadServiceState.consumerInfoMap[consumer] // 1. Let |consumerInfo| = consumerInfoMap[consumer].
+
+    consumerInfo.isActive = false; // 2. Set |consumerInfo|.isActive = false.
+
+    /*
+    HELP: what does `be a copy mean`? is it:
+    * deep copy - make an entirely new clone of connectedGamepads. both variables reference different memory locations
+    * shallow copy - `gamepadServiceState.connectedGamepads` and `lastConnectedGamepads` reference the same memory location
+
+    also - any concerns around references being lost, etc?
+    */
+    lastConnectedGamepads = gamepadServiceState() // 3. Let |lastConnectedGamepads| be a copy of connectedGamepads.
+
+    // HELP: again - what is key `consumer`?
+    // 4. Insert |lastConnectedGamepads| into |inactiveConsumerMap| with key consumer.
+    // HELP: ok i'm not sure how to do this
+}
+
+// --- section break --- //
 
 // When a gamepad consumer is removed, the user agent MUST perform the following steps:
 
