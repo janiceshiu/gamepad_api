@@ -248,9 +248,15 @@ function gamepadDisconnectedFromTheSystem() {
 
 // --- section break --- //
 
-// When the gamepad service is notified that new data has been received from a gamepad, the user agent MUST perform the following steps:
+function newDataFromGamepad() {
+  // When the gamepad service is notified that new data has been received from a gamepad, the user agent MUST perform the following steps:
 
-//  1. Let |now| be a {{DOMHighResTimeStamp}} value representing the current time.
-//  1. Let |gamepad| be the item in connectedGamepads representing the gamepad that uploaded new data.
-//  1. Let |buttonState| be the state of all buttons on the gamepad.
+  now = Date.now(); // 1. Let |now| be a DOMHighResTimeStamp value representing the current time.
 
+  // HELP: again - how to do I get the gamepad?
+  gamepad = {} // 2. Let |gamepad| be the item in connectedGamepads representing the gamepad that uploaded new data.
+
+  // HELP: where do we use this variable?
+  // TODO: once I figure out where gamepad comes from
+  buttonState = "do_something" // 3. Let |buttonState| be the state of all buttons on the gamepad.
+}
