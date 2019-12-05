@@ -52,25 +52,74 @@ class GamepadServiceState {
 
 // Todo: define “becomes active”.
 
-// When a gamepad |consumer| becomes active, the user agent MUST perform the following steps:
+class ConsumerInfo {
+  constructor() {
+    this.hasGesture = false; // 4.2. Initialize consumerInfo.hasGesture to false.
+    this.isActive = true //  4.3. Set consumerInfo.isActive to true.
+  }
 
-//  1. Let |gamepadInfo| be information provided by the operating system about the connected gamepad.
-//  1. If |consumerInfoMap| contains no ConsumerInfo with isActive==true:
-//    1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
-//  1. Let |consumerInfo| be consumerInfoMap[consumer], or null if the key is not found in the map.
-//  1. If |consumerInfo| is null:
-//    1. Let consumerInfo be a new instance of ConsumerInfo.
-//    1. Initialize consumerInfo.hasGesture to false.
-//  1. Set consumerInfo.isActive to true.
-//  1. Let |lastConnectedGamepads| be inactiveConsumerMap[consumer], or null if the key is not found in the map.
-//  1. If lastConnectedGamepads is not null:
-//    1. Remove the entry with key consumer from inactiveConsumerMap.
-//    1. If consumerInfo.hasGesture is true:
-//      1. For each gamepad in connectedGamepads:
-//        1. If gamepad is in lastConnectedGamepads but not connectedGamepads:
-//          1. Dispatch gamepadconnected for gamepad on consumer (window?).
-//        1. If gamepad is in connectedGamepads but not lastConnectedGamepads:
-//          1. Dispatch gamepaddisconnected for gamepad on consumer.
+}
+function gamepadConsumerBecomesActive(gamepadServiceState) {
+  // When a gamepad |consumer| becomes active, the user agent MUST perform the following steps:
+  // HELP: where and what is consumer?
+
+  gamepadInfo = "temp" // 1. Let |gamepadInfo| be information provided by the operating system about the connected gamepad.
+
+  if (noActiveConsumer(gamepadServiceState)) { // 2. If |consumerInfoMap| contains no ConsumerInfo with isActive==true
+    // 3. Register with the operating system to receive notifications when gamepads are connected or disconnected.
+    // HELP: not sure how to do this
+  }
+
+  function noActiveConsumer(gamepadServiceState) {
+    // HELP: which consumer info are we using i'm confused now. only check 1 consumer for the 1 service state?
+    // 2. If |consumerInfoMap| contains no ConsumerInfo with isActive==true
+    return gamepadServiceState.consumerInfoMap.isActive === true;
+  }
+
+  // HELP: i'm really confused as to who consumer info is.
+  // not sure whether this variable is referring to the correct things
+  consumerInfo = gamepadServiceState.consumerInfoMap.consumer // 3. Let |consumerInfo| be consumerInfoMap[consumer], or null if the key is not found in the map.
+
+  if (consumerInfo === null) { //  4. If |consumerInfo| is null:
+    consumerInfo = new ConsumerInfo()//    4.1. Let consumerInfo be a new instance of ConsumerInfo.
+  }
+
+  // HELP: can this be clearer? eg: instad of `inactiveConsumerMap`, say gamepadServiceState.inactiveConsumerMap. cos otherwise it's hard to tell whether it's a standalone variable or a key from some other map/obj
+  // HELP: again - is `consumer` a fixed key or is it something that changes with each gamepad?
+  lastConnectedGamepads = gamepadServiceState.inactiveConsumerMap[consumer] // 5. Let |lastConnectedGamepads| be inactiveConsumerMap[consumer], or null if the key is not found in the map.
+
+  if (lastConnectedGamepads !== null) { // 6.  If lastConnectedGamepads is not null:
+    // 6.1 Remove the entry with key consumer from inactiveConsumerMap.
+    // HELP: okay this sounds like a specifc key that varies from gamepad to gamepad. eg: the key is `123` for my gamepad and `456 for marcos' gamepad. not sure though
+    // HELP: really need to define consumer SOMEWHERE. this is gonna break
+    gamepadServiceState.inactiveConsumerMap.delete(consumer)
+  }
+
+  if (consumerInfo.hasGesture === true) { // 6.2 If consumerInfo.hasGesture is true:
+    for (gamepad in gamepadServiceState.connectedGamepads) { // 6.2.1 For each gamepad in connectedGamepads:
+
+      /*
+      1. If gamepad is in lastConnectedGamepads but not connectedGamepads      // 1. Dispatch gamepadconnected for gamepad on consumer (window?).
+       1. If gamepad is in connectedGamepads but not lastConnectedGamepads:
+         1. Dispatch gamepaddisconnected for gamepad on consumer.
+      */
+
+      /*
+      HELP: the above is a bit confusing. also, there are 4 cases and spec only covers 2
+
+      case | in lastConnectedGamepads | in connectedGamepads |
+      1 | x | x |
+      2 | x | o |
+      3 | o | x |
+      4 | o | o |
+
+      // we can ignore case 4. but what about case 1?
+      */
+    }
+  }
+}
+
+// --- section break --- //
 
 // When a gamepad consumer becomes inactive, the user agent MUST perform the following steps:
 
