@@ -1,15 +1,8 @@
 document.addEventListener("DOMContentLoaded", setup);
-  setup();
-});
 
 function setup() {
   document.getElementById("add-gamepad").addEventListener("click", addGamepad);
-    addGamepad();
-  });
-
-  document.getElementById("add-iframe").addEventListener("click", () => {
-    addIframe();
-  });
+  document.getElementById("add-iframe").addEventListener("click", addIframe);
 }
 
 function addGamepad() {
