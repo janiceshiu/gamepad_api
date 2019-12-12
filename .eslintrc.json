@@ -1,9 +1,10 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jasmine": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:jasmine"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 9
@@ -29,5 +30,5 @@
     "sort-imports": 2,
     "spaced-comment": ["error", "always", { "block": { "balanced": true } }]
   },
-  "plugins": ["prettier"]
+  "plugins": ["prettier", "jasmine"]
 }
