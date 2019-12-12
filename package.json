@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karmatic tests/**/*.js",
     "eslint": "eslint",
-    "lint": "eslint \"src/**/*.js\""
+    "lint": "eslint \"**/*.js\""
   },
   "repository": {
     "type": "git",
