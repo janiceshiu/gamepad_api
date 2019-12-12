@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", setup);
   setup();
 });
 
 function setup() {
-  document.getElementById("add-gamepad").addEventListener("click", () => {
+  document.getElementById("add-gamepad").addEventListener("click", addGamepad);
     addGamepad();
   });
 
