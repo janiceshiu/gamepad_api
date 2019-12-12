@@ -1,0 +1,30 @@
+{
+  "name": "gamepad-service",
+  "version": "0.0.1",
+  "description": "A prototype implementation of the GamePad Service Manager proposal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "karmatic tests/**/*.js",
+    "eslint": "eslint",
+    "lint": "eslint \"**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/janiceshiu/gamepad_api.git"
+  },
+  "author": "Janice Shiu",
+  "license": "W3C-20150513",
+  "bugs": {
+    "url": "https://github.com/janiceshiu/gamepad_api/issues"
+  },
+  "homepage": "https://github.com/janiceshiu/gamepad_api#readme",
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-jasmine": "^4.1.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "karmatic": "^1.4.0",
+    "prettier": "1.19.1",
+    "webpack": "^4.41.2"
+  }
+}
