@@ -20,7 +20,7 @@ function addGamepad() {
 
 function addIframe() {
   const iframe = document.createElement("iframe");
-  iframe.src = "example_url.html";
+  iframe.src = "";
   document.getElementById("iframes").appendChild(iframe);
 }
 
