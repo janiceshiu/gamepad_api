@@ -4,8 +4,8 @@
   "description": "A prototype implementation of the GamePad Service Manager proposal.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint" : "eslint",
+    "test": "karmatic tests/**/*.js",
+    "eslint": "eslint",
     "lint": "eslint \"src/**/*.js\""
   },
   "repository": {
@@ -24,6 +24,8 @@
     "eslint-plugin-prettier": "^3.1.1"
   },
   "devDependencies": {
-    "prettier": "1.19.1"
+    "karmatic": "^1.4.0",
+    "prettier": "1.19.1",
+    "webpack": "^4.41.2"
   }
 }
