@@ -23,7 +23,7 @@ export class Consumer {
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
 // The steps take the GamepadService as an argument:
-function consumerBecomesActive(gamepadService, consumer) {
+export function consumerBecomesActive(gamepadService, consumer) {
   //  1. Assert: gamepadService is not null.
   console.assert(gamepadService);
   //  1. Let consumerInfoMap be gamepadService["consumerInfoMap"]
