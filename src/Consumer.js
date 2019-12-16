@@ -17,12 +17,8 @@ A [=consumer=] is removed if the window hosting the consumer is closed. Both act
 */
 
 export class Consumer {
-  onGamepadConnected (gamepad) {
-
-  }
-  onGamepadDisconnected(gamepad) {
-
-  }
+  // TODO: disconnect/connect registration as per activation algorithm" or similar
+  // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
 }
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
