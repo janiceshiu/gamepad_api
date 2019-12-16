@@ -23,12 +23,13 @@ export class Consumer {
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
 // The steps take the GamepadService as an argument:
-function consumerBecomesActive(gamepadService) {
+function consumerBecomesActive(gamepadService, consumer) {
   //  1. Assert: gamepadService is not null.
   console.assert(gamepadService);
-
+  //  1. Let consumerInfoMap be gamepadService["consumerInfoMap"]
+  const {consumerInfoMap} = gamepadService;
   //  1. [=Get values=] of gamepadService["consumerInfoMap"], and then [=list/for each=] |consumerInfo|:
-  for (const consumerInfo of gamepadService.consumerInfoMap.values()) {
+  for (const consumerInfo of consumerInfoMap.values()) {
     // 1. If consumerInfo["isActive"] is true,
     if (consumerInfo.isActive) {
       // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
@@ -37,6 +38,24 @@ function consumerBecomesActive(gamepadService) {
       break;
     }
   }
+
+  // 1. Let |consumerInfo| be null.
+  let consumerInfo = null;
+
+  // 1. If consumerInfoMap[consumer] exists, then:
+  if (consumerInfoMap.has(consumer)) {
+    // 1. Set |consumerInfo| to consumerInfoMap[consumer].
+    consumerInfo = consumerInfoMap.get(consumer);
+  // 1. Otherwise:
+  } else {
+    // 1. Set |consumerInfo| to a new {{ConsumerInfo}}.
+    consumerInfo = new ConsumerInfo();
+    // 1. Set consumerInfoMap[consumer] to |consumerInfo|.
+    consumerInfoMap.set(consumer, consumerInfo);
+  }
+
+  // 1. Set |consumerInfo|'s {{ConsumerInfo/isActive}} member to true.
+  consumerInfo.isActive = true;
 }
 
 export class ConsumerInfo {
