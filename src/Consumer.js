@@ -60,7 +60,7 @@ function consumerBecomesActive(gamepadService, consumer) {
 
 export class ConsumerInfo {
   constructor() {
-    this.isActive;
+    this.isActive; // check whether can default to false
     this.hasGesture = false;
   }
 }
