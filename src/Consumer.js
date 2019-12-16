@@ -35,7 +35,6 @@ function consumerBecomesActive(gamepadService) {
   for (const consumerInfo of gamepadService.consumerInfoMap.values()) {
     // 1. If consumerInfo["isActive"] is true,
     if (consumerInfo.isActive) {
-      let hasActiveConsumer = true;
       // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
       // TODO: Actual registration
       // 1. break;
