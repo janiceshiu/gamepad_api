@@ -27,7 +27,7 @@ function consumerBecomesActive(gamepadService, consumer) {
   //  1. Assert: gamepadService is not null.
   console.assert(gamepadService);
   //  1. Let consumerInfoMap be gamepadService["consumerInfoMap"]
-  const {consumerInfoMap} = gamepadService;
+  const { consumerInfoMap } = gamepadService;
   //  1. [=Get values=] of gamepadService["consumerInfoMap"], and then [=list/for each=] |consumerInfo|:
   for (const consumerInfo of consumerInfoMap.values()) {
     // 1. If consumerInfo["isActive"] is true,
@@ -46,7 +46,7 @@ function consumerBecomesActive(gamepadService, consumer) {
   if (consumerInfoMap.has(consumer)) {
     // 1. Set |consumerInfo| to consumerInfoMap[consumer].
     consumerInfo = consumerInfoMap.get(consumer);
-  // 1. Otherwise:
+    // 1. Otherwise:
   } else {
     // 1. Set |consumerInfo| to a new {{ConsumerInfo}}.
     consumerInfo = new ConsumerInfo();
