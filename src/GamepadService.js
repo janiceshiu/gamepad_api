@@ -11,7 +11,7 @@ interface GamepadService {
 
 export class GamepadService {
   constructor() {
-    this.consumerInfoMap = new Map();
+    this.consumers = new Set();
     this.connectedGamepads = [];
   }
 }

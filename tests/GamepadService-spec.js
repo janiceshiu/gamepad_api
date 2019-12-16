@@ -12,8 +12,7 @@ describe("consumerBecomesActive()", () => {
     const service = new GamepadService();
     const consumer = new Consumer();
     consumerBecomesActive(service, consumer);
-    const info = service.consumerInfoMap.get(consumer);
 
-    expect(info.isActive).toBe(true);
+    expect(consumer.isActive).toBe(true);
   });
 });

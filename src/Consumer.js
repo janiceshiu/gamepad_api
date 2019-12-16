@@ -17,21 +17,25 @@ A [=consumer=] is removed if the window hosting the consumer is closed. Both act
 */
 
 export class Consumer {
+  constructor() {
+    this.isActive; // check whether can default to false
+    this.hasGesture = false;
+  }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
 }
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
-// The steps take the GamepadService as an argument:
+// The steps take the GamepadService |gamepadService| and the  |consumer| as an argument:
 export function consumerBecomesActive(gamepadService, consumer) {
   //  1. Assert: gamepadService is not null.
   console.assert(gamepadService);
-  //  1. Let consumerInfoMap be gamepadService["consumerInfoMap"]
-  const { consumerInfoMap } = gamepadService;
-  //  1. [=Get values=] of gamepadService["consumerInfoMap"], and then [=list/for each=] |consumerInfo|:
-  for (const consumerInfo of consumerInfoMap.values()) {
-    // 1. If consumerInfo["isActive"] is true,
-    if (consumerInfo.isActive) {
+  //  1. Let consumers be gamepadService["consumers"]
+  const { consumers } = gamepadService;
+  //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
+  for (const consumer of consumers) {
+    // 1. If |consumer|'s {{Consumer/isActive}} is true,
+    if (consumer.isActive) {
       // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
       // TODO: Actual registration
       // 1. break;
@@ -39,34 +43,11 @@ export function consumerBecomesActive(gamepadService, consumer) {
     }
   }
 
-  // 1. Let |consumerInfo| be null.
-  let consumerInfo = null;
-
-  // 1. If consumerInfoMap[consumer] exists, then:
-  if (consumerInfoMap.has(consumer)) {
-    // 1. Set |consumerInfo| to consumerInfoMap[consumer].
-    consumerInfo = consumerInfoMap.get(consumer);
-    // 1. Otherwise:
-  } else {
-    // 1. Set |consumerInfo| to a new {{ConsumerInfo}}.
-    consumerInfo = new ConsumerInfo();
-    // 1. Set consumerInfoMap[consumer] to |consumerInfo|.
-    consumerInfoMap.set(consumer, consumerInfo);
+  // 1. If |consumer| does not exist in |consumers|, then [=set/append=] |consumer| to |consumers|.
+  if (!consumers.has(consumer)) {
+    consumers.add(consumer);
   }
 
-  // consumerInfo.isActive ??? true or (undefined or false).
-
-  // If this consumer was previously active,
-  if (consumerInfo.isActive) {
-    // TODO: check if we should dispatch connection events.
-  }
-  // 1. Set |consumerInfo|'s {{ConsumerInfo/isActive}} member to true.
-  consumerInfo.isActive = true;
-}
-
-export class ConsumerInfo {
-  constructor() {
-    this.isActive; // check whether can default to false
-    this.hasGesture = false;
-  }
+  // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
+  consumer.isActive = true;
 }
