@@ -1,18 +1,9 @@
-document.addEventListener("DOMContentLoaded", setup);
+// To start the gamepad service, the user agent MUST perform the following steps:
+import { GamepadService } from "GamepadService.js";
 
-function setup() {
-  document.getElementById("add-gamepad").addEventListener("click", addGamepad);
-  document.getElementById("add-iframe").addEventListener("click", addIframe);
-}
+// If |gamepadServiceState| is null:
 
-function addGamepad() {
-  const gamepad = document.createElement("button");
-  gamepad.innerHTML = "button";
-  document.getElementById("gamepads").appendChild(gamepad);
-}
+// NOTE: can be satisfied just having a new gamepad cos this is creating a html page, not creating a browser
 
-function addIframe() {
-  const iframe = document.createElement("iframe");
-  iframe.src = "";
-  document.getElementById("iframes").appendChild(iframe);
-}
+// Set |gamepadService| to a new {{GamepadService}}.
+const gamepadService = new GamepadService();
