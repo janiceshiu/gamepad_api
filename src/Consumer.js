@@ -54,6 +54,12 @@ function consumerBecomesActive(gamepadService, consumer) {
     consumerInfoMap.set(consumer, consumerInfo);
   }
 
+  // consumerInfo.isActive ??? true or (undefined or false).
+
+  // If this consumer was previously active,
+  if (consumerInfo.isActive) {
+    // TODO: check if we should dispatch connection events.
+  }
   // 1. Set |consumerInfo|'s {{ConsumerInfo/isActive}} member to true.
   consumerInfo.isActive = true;
 }
