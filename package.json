@@ -4,6 +4,7 @@
   "description": "A prototype implementation of the GamePad Service Manager proposal.",
   "main": "index.js",
   "scripts": {
+    "start": "http-server -c-1",
     "test": "karmatic tests/**/*.js",
     "eslint": "eslint",
     "lint": "eslint \"**/*.js\""
