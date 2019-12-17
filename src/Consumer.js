@@ -16,13 +16,13 @@ An inactive [=consumer=] becomes active again if it transitions back to a state 
 A [=consumer=] is removed if the window hosting the consumer is closed. Both active and inactive consumers may be removed.
 */
 
-let consumer_id = 0;
+let consumerId = 0;
 
 export class Consumer extends HTMLIFrameElement {
   constructor() {
     super();
 
-    const id = consumer_id++;
+    const id = consumerId++;
 
     this.isActive;
     this.hasGesture = false;
