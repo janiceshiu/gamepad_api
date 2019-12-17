@@ -1,5 +1,6 @@
 // To start the gamepad service, the user agent MUST perform the following steps:
-import { GamepadService } from "GamepadService.js";
+import { Consumer, consumerBecomesActive } from "./Consumer.js";
+import { GamepadService } from "./GamepadService.js";
 
 // If |gamepadServiceState| is null:
 

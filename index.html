@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Gamepad API implementation</title>
-    <script type="text/javascript" src="src/gamepad-service.js"></script>
+    <script type="module" src="src/index.js"></script>
     <script>
       class Consumer extends HTMLIFrameElement {
         constructor() {
@@ -20,6 +20,7 @@
         extends: "iframe"
       });
     </script>
+    <script type="module" src="src/index.js"></script>
   </head>
 
   <body>
