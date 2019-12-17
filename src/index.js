@@ -8,3 +8,18 @@ import { GamepadService } from "./GamepadService.js";
 
 // Set |gamepadService| to a new {{GamepadService}}.
 const gamepadService = new GamepadService();
+
+document.addEventListener("DOMContentLoaded", event => {
+  setup();
+});
+
+function setup() {
+  document.getElementById("add-consumer").addEventListener("click", () => {
+    addConsumer();
+  });
+}
+
+function addConsumer() {
+  const c = new Consumer();
+  document.getElementById("consumers").appendChild(c);
+}
