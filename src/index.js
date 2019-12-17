@@ -19,7 +19,7 @@ export function addConsumer() {
 function addActivateConsumerListener(consumer) {
   consumer.addEventListener("load", () => {
     consumer.contentWindow.document
-      .getElementsByClassName(`activate-${consumer.id}`)[0]
+      .getElementById(`activate-${consumer.id}`)
       .addEventListener("click", () => {
         activateConsumer(gamepadService, consumer);
       });

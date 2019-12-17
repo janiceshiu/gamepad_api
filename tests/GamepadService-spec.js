@@ -44,7 +44,7 @@ describe("addConsumer()", () => {
     const consumer2 = document.getElementById("consumer-2");
 
     consumer1.contentWindow.document
-      .getElementsByClassName("activate-consumer-1")[0]
+      .getElementById("activate-consumer-1")
       .click();
 
     expect(consumer1.isActive).toBe(true);
