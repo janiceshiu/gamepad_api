@@ -24,7 +24,6 @@ export class Consumer extends HTMLIFrameElement {
 
     const id = consumerId++;
 
-    this.isActive;
     // True if the consumer is eligible to receive connection events.
     // boolean isActive false ;
     this.isActive = false;
