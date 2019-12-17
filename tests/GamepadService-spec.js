@@ -32,10 +32,10 @@ describe("addConsumer()", () => {
     const consumer1 = document.getElementById("consumer-1");
     const consumer2 = document.getElementById("consumer-2");
 
-    expect(consumer1.isActive).not.toBeDefined();
+    expect(consumer1.isActive).toBe(false);
     expect(consumer1.hasGesture).toBe(false);
 
-    expect(consumer2.isActive).not.toBeDefined();
+    expect(consumer2.isActive).toBe(false);
     expect(consumer2.hasGesture).toBe(false);
   });
 
@@ -50,7 +50,7 @@ describe("addConsumer()", () => {
     expect(consumer1.isActive).toBe(true);
     expect(consumer1.hasGesture).toBe(false);
 
-    expect(consumer2.isActive).not.toBeDefined();
+    expect(consumer2.isActive).toBe(false);
     expect(consumer2.hasGesture).toBe(false);
   });
 });

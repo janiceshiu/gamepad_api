@@ -25,6 +25,9 @@ export class Consumer extends HTMLIFrameElement {
     const id = consumerId++;
 
     this.isActive;
+    // True if the consumer is eligible to receive connection events.
+    // boolean isActive false ;
+    this.isActive = false;
     this.hasGesture = false;
 
     this.srcdoc = `<h1>Hello Consumer ${id}!</h1><button id='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
