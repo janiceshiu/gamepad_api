@@ -16,14 +16,19 @@ An inactive [=consumer=] becomes active again if it transitions back to a state 
 A [=consumer=] is removed if the window hosting the consumer is closed. Both active and inactive consumers may be removed.
 */
 
-export class Consumer {
+export class Consumer extends HTMLIFrameElement {
   constructor() {
-    this.isActive; // check whether can default to false
+    super();
+    this.isActive;
     this.hasGesture = false;
+    console.log("created");
+    this.innerHTML = `<h1>Hello Consumer!</h1>`;
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
 }
+
+customElements.define("gamepad-consumer", Consumer, { extends: "iframe" });
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
 // The steps take the GamepadService |gamepadService| and the  |consumer| as an argument:

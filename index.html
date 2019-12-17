@@ -4,23 +4,6 @@
     <meta charset="utf-8" />
     <title>Gamepad API implementation</title>
     <script type="module" src="src/index.js"></script>
-    <script>
-      class Consumer extends HTMLIFrameElement {
-        constructor() {
-          super();
-          console.log("created");
-          this.innerText = `<h1>Hello Consumer!</h1>`;
-        }
-
-        // TODO: disconnect/connect registration as per activation algorithm" or similar
-        // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
-      }
-
-      customElements.define("gamepad-consumer", Consumer, {
-        extends: "iframe"
-      });
-    </script>
-    <script type="module" src="src/index.js"></script>
   </head>
 
   <body>
