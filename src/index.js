@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", addConsumer);
 });
 
-function addConsumer() {
+export function addConsumer() {
   const c = new Consumer();
   document.getElementById("consumers").appendChild(c);
 
