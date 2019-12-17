@@ -27,7 +27,7 @@ export class Consumer extends HTMLIFrameElement {
     this.isActive;
     this.hasGesture = false;
     console.log("created");
-    this.srcdoc = `<h1>Hello Consumer!</h1>`;
+    this.srcdoc = `<h1>Hello Consumer ${id}!</h1><button class='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
