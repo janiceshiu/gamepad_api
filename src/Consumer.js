@@ -46,8 +46,8 @@ export class Consumer extends HTMLIFrameElement {
     this.addEventListener("load", () => {
       // toggle isActive
       this.contentWindow.addEventListener("click", () => {
-        this.isActive = !this.isActive;
-        this.contentWindow.document.body.classList.toggle("active");
+        const event = new Event("toggleConsumerIsActive", { bubbles: true });
+        this.dispatchEvent(event);
       });
     });
   }
@@ -82,6 +82,7 @@ export class Consumer extends HTMLIFrameElement {
 
     // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
     this.isActive = true;
+    this.contentWindow.document.body.classList.toggle("active");
   }
 }
 

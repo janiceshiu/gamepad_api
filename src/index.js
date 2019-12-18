@@ -9,3 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     Consumer.attachConsumer(consumersDiv);
   });
 });
+
+document.addEventListener("toggleConsumerIsActive", event => {
+  if (event.target.isActive) {
+    // deactivate consumer
+    event.target.isActive = false;
+    event.target.contentWindow.document.body.classList.toggle("active");
+  } else {
+    event.target.activateConsumer(gamepadService);
+  }
+});
