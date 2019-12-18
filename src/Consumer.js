@@ -33,6 +33,13 @@ export class Consumer extends HTMLIFrameElement {
 
     this.srcdoc = `<!doctype html><h1>Hello Consumer ${id}!</h1><button id='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
     this.id = `consumer-${id}`;
+
+    this.addEventListener("load", () => {
+      // toggle isActive
+      this.contentWindow.addEventListener("click", ()=>{
+        this.isActive = !this.isActive;
+      });
+    });
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
@@ -40,16 +47,6 @@ export class Consumer extends HTMLIFrameElement {
   static attachConsumer(htmlElement){
     const c = new Consumer();
     htmlElement.append(c);
-  }
-
-  addActivateConsumerListener(gamepadService) {
-    this.addEventListener("load", () => {
-      this.contentWindow.document
-        .getElementById(`activate-${this.id}`)
-        .addEventListener("click", () => {
-          this.activateConsumer(gamepadService);
-        });
-    });
   }
 
   activateConsumer(gamepadService) {
