@@ -4,14 +4,8 @@ import { GamepadService } from "./GamepadService.js";
 const gamepadService = new GamepadService();
 
 document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("add-consumer")
-    .addEventListener("click", addConsumer);
+  const consumersDiv = document.getElementById("consumers");
+  document.getElementById("add-consumer").addEventListener("click", () => {
+    Consumer.attachConsumer(consumersDiv);
+  });
 });
-
-export function addConsumer() {
-  const c = new Consumer();
-  document.getElementById("consumers").appendChild(c);
-
-  c.addActivateConsumerListener(gamepadService);
-}

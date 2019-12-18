@@ -37,6 +37,11 @@ export class Consumer extends HTMLIFrameElement {
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
 
+  static attachConsumer(htmlElement){
+    const c = new Consumer();
+    htmlElement.append(c);
+  }
+
   addActivateConsumerListener(gamepadService) {
     this.addEventListener("load", () => {
       this.contentWindow.document
