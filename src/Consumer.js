@@ -31,13 +31,23 @@ export class Consumer extends HTMLIFrameElement {
     // boolean hasGesture = false;
     this.hasGesture = false;
 
-    this.srcdoc = `<!doctype html><h1>Hello Consumer ${id}!</h1><button id='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
+    this.srcdoc = `
+      <!doctype html>
+      <style>
+        body {
+            background-color: lightcoral;
+          }
+        .active { background-color: lightblue }
+      </style>
+      <body><h1>Consumer ${id}!</h1></body>
+    `;
     this.id = `consumer-${id}`;
 
     this.addEventListener("load", () => {
       // toggle isActive
       this.contentWindow.addEventListener("click", ()=>{
         this.isActive = !this.isActive;
+        this.contentWindow.document.body.classList.toggle("active");
       });
     });
   }
