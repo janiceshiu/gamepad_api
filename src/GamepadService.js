@@ -41,4 +41,10 @@ export class GamepadService {
     consumer.contentWindow.document.body.classList.toggle("active");
 
   }
+
+  deactivateConsumer(consumer) {
+    // TODO: implement steps from gamepadService algos
+    event.target.isActive = false;
+    event.target.contentWindow.document.body.classList.toggle("active");
+  }
 }
