@@ -36,33 +36,93 @@ export class Consumer extends HTMLIFrameElement {
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
+
+  addActivateConsumerListener(gamepadService) {
+    this.addEventListener("load", () => {
+      this.contentWindow.document
+        .getElementById(`activate-${this.id}`)
+        .addEventListener("click", () => {
+          this.activateConsumer(gamepadService);
+        });
+    });
+  }
+
+  activateConsumer(gamepadService) {
+    //  1. Assert: gamepadService is not null.
+    console.assert(gamepadService);
+    //  1. Let consumers be gamepadService["consumers"]
+    const { consumers } = gamepadService;
+    //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
+    for (const consumer of consumers) {
+      // 1. If |consumer|'s {{Consumer/isActive}} is true,
+      if (consumer.isActive) {
+        // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
+        // TODO: Actual registration
+        // 1. break;
+        break;
+      }
+    }
+
+    // 1. If |consumer| does not exist in |consumers|, then [=set/append=] |consumer| to |consumers|.
+    if (!consumers.has(this)) {
+      consumers.add(this);
+    }
+
+    // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
+    this.isActive = true;
+  }
 }
 
 customElements.define("gamepad-consumer", Consumer, { extends: "iframe" });
 
 // When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes active</dfn> steps.
 // The steps take the GamepadService |gamepadService| and the  |consumer| as an argument:
-export function consumerBecomesActive(gamepadService, consumer) {
-  //  1. Assert: gamepadService is not null.
-  console.assert(gamepadService);
+// export function consumerBecomesActive(gamepadService, consumer) {
+
+// }
+
+// When a |consumer| becomes active, the user agent runs the <dfn>consumer becomes inactive</dfn> steps.
+// The steps take the GamepadService |gamepadService| and the  |consumer| as an argument:
+export function consumerBecomesInactive(gamepadService, consumer) {
+  // algo from google doc
+  // Mark the consumer inactive and preserve the current state of connected gamepads.
+  // 1. Let |consumerInfoMap| be gamepadService["consumerInfoMap"].
+  // 1. Let |inactiveConsumerMap| be gamepadService["inactiveConsumerMap"].
+  // 1. Let |consumerInfo| be consumerInfoMap[consumer].
+  // 1. Set consumerInfo["isActive"] to false.
+  // 1. Let |lastConnectedGamepads| be a clone of gamepadService["connectedGamepads"].
+  // 1. Set inactiveConsumerMap[consumer] to |lastConnectedGamepads|.
+
+  // MODIFIED ALGO
+  // 1. Set |consumer|'s {{Consumer/isActive}} member to `false`.
+  consumer.isActive = false;
+
+  // algo from google doc
+  // Check if there are still active consumers.
+  //  1. Let |hasActiveConsumer| be false.
+  //  1. For each |consumer| -> |consumerInfo| of |consumerInfoMap|:
+  //    1. If consumerInfo["isActive"] is false, then set |hasActiveConsumer| to true.
+  //  1. If |hasActiveConsumer| is false, then:
+  //    1. Unregister with the operating system to no longer receive notifications with gamepads are connected or disconnected.
+
+  // MODIFIED ALGO
   //  1. Let consumers be gamepadService["consumers"]
   const { consumers } = gamepadService;
+
+  // 1. Let |hasActiveConsumer| be false;
+  let hasActiveConsumer = false;
   //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
   for (const consumer of consumers) {
-    // 1. If |consumer|'s {{Consumer/isActive}} is true,
+    // if consumer["isActive"] is true, then set |hasActiveConsumer| to true.
     if (consumer.isActive) {
-      // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
-      // TODO: Actual registration
-      // 1. break;
+      hasActiveConsumer = true;
+      // break
       break;
     }
-  }
 
-  // 1. If |consumer| does not exist in |consumers|, then [=set/append=] |consumer| to |consumers|.
-  if (!consumers.has(consumer)) {
-    consumers.add(consumer);
+    // 1. If no |consumer|'s {{Consumer/isActive}} is true,
+    if (!hasActiveConsumer) {
+      // 1. Unregister with the operating system to no longer receive notifications with gamepads are connected or disconnected.
+    }
   }
-
-  // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
-  consumer.isActive = true;
 }

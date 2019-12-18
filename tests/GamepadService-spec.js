@@ -1,4 +1,4 @@
-import { Consumer, consumerBecomesActive } from "../src/Consumer.js";
+import { Consumer } from "../src/Consumer.js";
 import { GamepadService } from "../src/GamepadService.js";
 import { addConsumer } from "../src/index.js";
 
@@ -8,17 +8,7 @@ describe("GamepadService", () => {
   });
 });
 
-describe("consumerBecomesActive()", () => {
-  it("activates a consumer", () => {
-    const service = new GamepadService();
-    const consumer = new Consumer();
-    consumerBecomesActive(service, consumer);
-
-    expect(consumer.isActive).toBe(true);
-  });
-});
-
-describe("addConsumer()", () => {
+describe("Consumer()", () => {
   beforeEach(() => {
     const consumers = document.createElement("div");
     consumers.id = "consumers";
