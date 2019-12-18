@@ -6,3 +6,13 @@ describe("GamepadService", () => {
     expect(new GamepadService()).toBeTruthy();
   });
 });
+
+describe("Consumer", () => {
+  it("can be constructed with default attributes", () => {
+    const consumer = new Consumer();
+
+    expect(consumer).toBeTruthy();
+    expect(consumer.isActive).toBe(false);
+    expect(consumer.hasGesture).toBe(false);
+  });
+});
