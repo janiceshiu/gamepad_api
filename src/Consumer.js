@@ -45,7 +45,7 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       // toggle isActive
-      this.contentWindow.addEventListener("click", ()=>{
+      this.contentWindow.addEventListener("click", () => {
         this.isActive = !this.isActive;
         this.contentWindow.document.body.classList.toggle("active");
       });
@@ -54,7 +54,7 @@ export class Consumer extends HTMLIFrameElement {
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
 
-  static attachConsumer(htmlElement){
+  static attachConsumer(htmlElement) {
     const c = new Consumer();
     htmlElement.append(c);
   }
