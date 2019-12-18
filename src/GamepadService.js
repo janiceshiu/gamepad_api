@@ -42,9 +42,51 @@ export class GamepadService {
 
   }
 
+  // When a |consumer| becomes inactive, the user agent runs the <dfn>consumer becomes inactive</dfn> steps.
+  // The steps take the GamepadService |gamepadService| and the  |consumer| as an argument:
   deactivateConsumer(consumer) {
-    // TODO: implement steps from gamepadService algos
-    event.target.isActive = false;
-    event.target.contentWindow.document.body.classList.toggle("active");
+    // algo from google doc
+    // Mark the consumer inactive and preserve the current state of connected gamepads.
+    // 1. Let |consumerInfoMap| be gamepadService["consumerInfoMap"].
+    // 1. Let |inactiveConsumerMap| be gamepadService["inactiveConsumerMap"].
+    // 1. Let |consumerInfo| be consumerInfoMap[consumer].
+    // 1. Set consumerInfo["isActive"] to false.
+    // 1. Let |lastConnectedGamepads| be a clone of gamepadService["connectedGamepads"].
+    // 1. Set inactiveConsumerMap[consumer] to |lastConnectedGamepads|.
+
+    // MODIFIED ALGO
+    // 1. Set |consumer|'s {{Consumer/isActive}} member to `false`.
+    consumer.isActive = false;
+    // toggle consumer's background color
+    consumer.contentWindow.document.body.classList.toggle("active");
+
+    // algo from google doc
+    // Check if there are still active consumers.
+    //  1. Let |hasActiveConsumer| be false.
+    //  1. For each |consumer| -> |consumerInfo| of |consumerInfoMap|:
+    //    1. If consumerInfo["isActive"] is false, then set |hasActiveConsumer| to true.
+    //  1. If |hasActiveConsumer| is false, then:
+    //    1. Unregister with the operating system to no longer receive notifications with gamepads are connected or disconnected.
+
+    // MODIFIED ALGO
+    //  1. Let consumers be gamepadService["consumers"]
+    const { consumers } = this;
+
+    // 1. Let |hasActiveConsumer| be false;
+    let hasActiveConsumer = false;
+    //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
+    for (const c of consumers) {
+      // if consumer["isActive"] is true, then set |hasActiveConsumer| to true.
+      if (c.isActive) {
+        hasActiveConsumer = true;
+        // break
+        break;
+      }
+
+      // 1. If no |consumer|'s {{Consumer/isActive}} is true,
+      if (!hasActiveConsumer) {
+        // 1. TODO: Unregister with the operating system to no longer receive notifications with gamepads are connected or disconnected.
+      }
+    }
   }
 }
