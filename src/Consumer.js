@@ -44,7 +44,6 @@ export class Consumer extends HTMLIFrameElement {
     this.id = `consumer-${id}`;
 
     this.addEventListener("load", () => {
-      // toggle isActive
       this.contentWindow.addEventListener("click", () => {
         const event = new Event("toggleConsumerIsActive", { bubbles: true });
         this.dispatchEvent(event);
@@ -57,32 +56,6 @@ export class Consumer extends HTMLIFrameElement {
   static attachConsumer(htmlElement) {
     const c = new Consumer();
     htmlElement.append(c);
-  }
-
-  activateConsumer(gamepadService) {
-    //  1. Assert: gamepadService is not null.
-    console.assert(gamepadService);
-    //  1. Let consumers be gamepadService["consumers"]
-    const { consumers } = gamepadService;
-    //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
-    for (const consumer of consumers) {
-      // 1. If |consumer|'s {{Consumer/isActive}} is true,
-      if (consumer.isActive) {
-        // 1. Register with the operating system to receive notifications when gamepads are connected or disconnected.
-        // TODO: Actual registration
-        // 1. break;
-        break;
-      }
-    }
-
-    // 1. If |consumer| does not exist in |consumers|, then [=set/append=] |consumer| to |consumers|.
-    if (!consumers.has(this)) {
-      consumers.add(this);
-    }
-
-    // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
-    this.isActive = true;
-    this.contentWindow.document.body.classList.toggle("active");
   }
 }
 

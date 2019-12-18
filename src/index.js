@@ -16,6 +16,6 @@ document.addEventListener("toggleConsumerIsActive", event => {
     event.target.isActive = false;
     event.target.contentWindow.document.body.classList.toggle("active");
   } else {
-    event.target.activateConsumer(gamepadService);
+    gamepadService.activateConsumer(event.target);
   }
 });
