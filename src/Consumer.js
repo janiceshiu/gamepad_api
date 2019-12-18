@@ -31,7 +31,7 @@ export class Consumer extends HTMLIFrameElement {
     // boolean hasGesture = false;
     this.hasGesture = false;
 
-    this.srcdoc = `<h1>Hello Consumer ${id}!</h1><button id='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
+    this.srcdoc = `<!doctype html><h1>Hello Consumer ${id}!</h1><button id='activate-consumer-${id}'>Activate Consumer ${id}</button>`;
     this.id = `consumer-${id}`;
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
