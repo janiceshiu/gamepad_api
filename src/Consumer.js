@@ -29,7 +29,7 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       this.contentWindow.addEventListener("click", () => {
-        this.setActiveState();
+        this.toggleActiveState();
       });
     });
   }
