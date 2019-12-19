@@ -48,7 +48,7 @@ describe("Consumer", () => {
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
 
-    consumer.setActiveState();
+    consumer.toggleActiveState();
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
@@ -59,7 +59,7 @@ describe("Consumer", () => {
     document.body.append(consumers);
 
     const consumer = Consumer.attachConsumer(consumers);
-    consumer.setActiveState();
+    consumer.toggleActiveState();
 
     await new Promise(resolve => {
       consumer.onload = resolve;
@@ -68,7 +68,7 @@ describe("Consumer", () => {
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
 
-    consumer.setActiveState();
+    consumer.toggleActiveState();
 
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);

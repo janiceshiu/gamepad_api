@@ -47,7 +47,7 @@ export class Consumer extends HTMLIFrameElement {
     return c;
   }
 
-  setActiveState() {
+  toggleActiveState() {
     this._isActive = !this._isActive;
     this.contentWindow.document.body.classList.toggle("active");
     const event = new CustomEvent("activestatechange");
