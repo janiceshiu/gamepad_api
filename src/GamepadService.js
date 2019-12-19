@@ -37,8 +37,6 @@ export class GamepadService {
     }
 
     // 1. Set |consumer|'s {{Consumer/isActive}} member to `true`.
-    consumer.isActive = true;
-    consumer.contentWindow.document.body.classList.toggle("active");
   }
 
   // When a |consumer| becomes inactive, the user agent runs the <dfn>consumer becomes inactive</dfn> steps.

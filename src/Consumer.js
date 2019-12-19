@@ -26,7 +26,7 @@ export class Consumer extends HTMLIFrameElement {
 
     // True if the consumer is eligible to receive connection events.
     // boolean isActive false ;
-    this.isActive = false;
+    this._isActive = false;
     // True if a gamepad button press was observed while this consumer was active.
     // boolean hasGesture = false;
     this.hasGesture = false;
@@ -47,9 +47,14 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       this.contentWindow.addEventListener("click", () => {
+        this._isActive = !this._isActive;
+        this.contentWindow.document.body.classList.toggle("active");
         const event = new CustomEvent("activestatechange");
         this.dispatchEvent(event);
       });
+       get isActive() {
+          return this._isActive;
+       }
     });
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
