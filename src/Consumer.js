@@ -1,21 +1,3 @@
-/**
-<dfn>Consumer</dfn>
- ?? iframe
- ?? popup window
- ?? browser tabs
-    (Window)
-
-A window can have multiple consumers if it has a cross-origin iframe that is also a [=consumer=].
-
-A [=consumer=] <dfn data-for=”consumer”>becomes active</dfn> when it first expresses interest in gamepad data, either by calling navigator.getGamepads() or by registering an event listener for “gamepadconnected” or “gamepaddisconnected”.
-
-A [=consumer=] becomes inactive if it was previously active, but transitions to a state where it is not eligible to receive gamepad data. This can occur if the window becomes [=hidden=].
-
-An inactive [=consumer=] becomes active again if it transitions back to a state where it is eligible to receive gamepad data, for instance by becoming [=visible=] again.
-
-A [=consumer=] is removed if the window hosting the consumer is closed. Both active and inactive consumers may be removed.
-*/
-
 let consumerId = 0;
 
 export class Consumer extends HTMLIFrameElement {
