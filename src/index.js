@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("toggleConsumerIsActive", event => {
+document.addEventListener("activestatechange", event => {
   if (event.target.isActive) {
     // deactivate consumer
     gamepadService.deactivateConsumer(event.target);

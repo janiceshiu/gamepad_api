@@ -45,7 +45,7 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       this.contentWindow.addEventListener("click", () => {
-        const event = new CustomEvent("toggleConsumerIsActive", { bubbles: true });
+        const event = new CustomEvent("activestatechange", { bubbles: true });
         this.dispatchEvent(event);
       });
     });
