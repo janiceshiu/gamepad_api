@@ -52,10 +52,11 @@ export class Consumer extends HTMLIFrameElement {
         const event = new CustomEvent("activestatechange");
         this.dispatchEvent(event);
       });
-       get isActive() {
-          return this._isActive;
-       }
     });
+  }
+
+  get isActive() {
+    return this._isActive;
   }
   // TODO: disconnect/connect registration as per activation algorithm" or similar
   // possible function signatures could be `onGamepadConnected(gamepad)` and `onGamepadDisconnected(gamepad)`
