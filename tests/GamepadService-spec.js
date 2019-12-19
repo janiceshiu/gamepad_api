@@ -6,48 +6,7 @@ describe("GamepadService", () => {
     expect(new GamepadService()).toBeTruthy();
   });
 
-  it("can activate a consumer", async() => {
-    const gamepadService = new GamepadService();
 
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
-
-    const consumer = Consumer.attachConsumer(consumers);
-
-    await new Promise(resolve => {
-      consumer.onload = resolve;
-    });
-
-    expect(consumer.isActive).toBe(false);
-    expect(consumer.hasGesture).toBe(false);
-
-    gamepadService.activateConsumer(consumer);
-
-    expect(consumer.isActive).toBe(true);
-    expect(consumer.hasGesture).toBe(false);
-  });
-
-  it("can deactivate a consumer", async() => {
-    const gamepadService = new GamepadService();
-
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
-
-    const consumer = Consumer.attachConsumer(consumers);
-    gamepadService.activateConsumer(consumer);
-
-    await new Promise(resolve => {
-      consumer.onload = resolve;
-    });
-
-    expect(consumer.isActive).toBe(true);
-    expect(consumer.hasGesture).toBe(false);
-
-    gamepadService.deactivateConsumer(consumer);
-
-    expect(consumer.isActive).toBe(false);
-    expect(consumer.hasGesture).toBe(false);
-  });
 });
 
 describe("Consumer", () => {
@@ -72,6 +31,45 @@ describe("Consumer", () => {
 
     expect(consumer.parentElement.id).toBe("consumers");
     expect(consumer.id).toContain("consumer-");
+    expect(consumer.isActive).toBe(false);
+    expect(consumer.hasGesture).toBe(false);
+  });
+
+  it("can activate itself", async() => {
+    const consumers = document.createElement("div");
+    document.body.append(consumers);
+
+    const consumer = Consumer.attachConsumer(consumers);
+
+    await new Promise(resolve => {
+      consumer.onload = resolve;
+    });
+
+    expect(consumer.isActive).toBe(false);
+    expect(consumer.hasGesture).toBe(false);
+
+    consumer.setActiveState();
+
+    expect(consumer.isActive).toBe(true);
+    expect(consumer.hasGesture).toBe(false);
+  });
+
+  it("can deactivate itself", async() => {
+    const consumers = document.createElement("div");
+    document.body.append(consumers);
+
+    const consumer = Consumer.attachConsumer(consumers);
+    consumer.setActiveState();
+
+    await new Promise(resolve => {
+      consumer.onload = resolve;
+    });
+
+    expect(consumer.isActive).toBe(true);
+    expect(consumer.hasGesture).toBe(false);
+
+    consumer.setActiveState();
+
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
   });
