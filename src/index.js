@@ -6,15 +6,15 @@ const gamepadService = new GamepadService();
 document.addEventListener("DOMContentLoaded", () => {
   const consumersDiv = document.getElementById("consumers");
   document.getElementById("add-consumer").addEventListener("click", () => {
-    Consumer.attachConsumer(consumersDiv);
+    const consumer = Consumer.attachConsumer(consumersDiv);
+
+    consumer.addEventListener("activestatechange", event => {
+      if (event.target.isActive) {
+        gamepadService.deactivateConsumer(event.target);
+      } else {
+        gamepadService.activateConsumer(event.target);
+      }
+    });
   });
 });
 
-document.addEventListener("activestatechange", event => {
-  if (event.target.isActive) {
-    // deactivate consumer
-    gamepadService.deactivateConsumer(event.target);
-  } else {
-    gamepadService.activateConsumer(event.target);
-  }
-});

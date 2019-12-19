@@ -45,7 +45,7 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       this.contentWindow.addEventListener("click", () => {
-        const event = new CustomEvent("activestatechange", { bubbles: true });
+        const event = new CustomEvent("activestatechange");
         this.dispatchEvent(event);
       });
     });
@@ -56,6 +56,8 @@ export class Consumer extends HTMLIFrameElement {
   static attachConsumer(htmlElement) {
     const c = new Consumer();
     htmlElement.append(c);
+
+    return c;
   }
 }
 
