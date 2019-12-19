@@ -53,9 +53,7 @@ export class GamepadService {
 
     // MODIFIED ALGO
     // 1. Set |consumer|'s {{Consumer/isActive}} member to `false`.
-    consumer.isActive = false;
     // toggle consumer's background color
-    consumer.contentWindow.document.body.classList.toggle("active");
 
     // algo from google doc
     // Check if there are still active consumers.
