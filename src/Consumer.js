@@ -37,8 +37,8 @@ export class Consumer extends HTMLIFrameElement {
         body {
           background-color: lightcoral;
         }
-        .active { 
-          background-color: lightblue; 
+        .active {
+          background-color: lightblue;
         }
       </style>
       <body><h1>Consumer ${id}!</h1></body>
