@@ -99,7 +99,7 @@ export function consumerBecomesInactive(gamepadService, consumer) {
   let hasActiveConsumer = false;
   //  1. [=list/for each=] |consumer| of gamepadService["consumers"]:
   for (const consumer of consumers) {
-    // if consumer["isActive"] is true, then set |hasActiveConsumer| to true.
+    // 1. If |consumer|'s {{Consumer/isActive}} member is true,
     if (consumer.isActive) {
       hasActiveConsumer = true;
       // break
