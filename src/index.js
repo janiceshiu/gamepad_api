@@ -9,11 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const consumer = Consumer.attachConsumer(consumersDiv);
 
     consumer.addEventListener("activestatechange", event => {
-      if (event.target.isActive) {
-        gamepadService.deactivateConsumer(event.target);
-      } else {
-        gamepadService.activateConsumer(event.target);
-      }
+      // do something;
     });
   });
 });

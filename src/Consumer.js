@@ -29,10 +29,7 @@ export class Consumer extends HTMLIFrameElement {
 
     this.addEventListener("load", () => {
       this.contentWindow.addEventListener("click", () => {
-        this._isActive = !this._isActive;
-        this.contentWindow.document.body.classList.toggle("active");
-        const event = new CustomEvent("activestatechange");
-        this.dispatchEvent(event);
+        this.setActiveState();
       });
     });
   }
@@ -48,6 +45,13 @@ export class Consumer extends HTMLIFrameElement {
     htmlElement.append(c);
 
     return c;
+  }
+
+  setActiveState() {
+    this._isActive = !this._isActive;
+    this.contentWindow.document.body.classList.toggle("active");
+    const event = new CustomEvent("activestatechange");
+    this.dispatchEvent(event);
   }
 }
 
