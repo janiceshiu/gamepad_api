@@ -34,7 +34,7 @@ describe("GamepadService", () => {
     document.body.append(consumers);
 
     const consumer = Consumer.attachConsumer(consumers);
-    consumer.isActive = true;
+    gamepadService.activateConsumer(consumer);
 
     await new Promise(resolve => {
       consumer.onload = resolve;
