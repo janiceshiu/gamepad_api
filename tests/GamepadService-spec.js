@@ -82,12 +82,11 @@ describe("Consumer", () => {
     document.body.append(consumers);
 
     const consumer = Consumer.attachConsumer(consumers);
-    consumer.toggleActiveState();
 
     await new Promise(resolve => {
       consumer.onload = resolve;
     });
-
+    consumer.toggleActiveState();
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
 
