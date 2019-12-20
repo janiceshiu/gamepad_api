@@ -1,10 +1,8 @@
-// To start the gamepad service, the user agent MUST perform the following steps:
-import { Consumer, consumerBecomesActive } from "./Consumer.js";
-import { GamepadService } from "./GamepadService.js";
+import { Consumer } from "./Consumer.js";
 
-// If |gamepadServiceState| is null:
-
-// NOTE: can be satisfied just having a new gamepad cos this is creating a html page, not creating a browser
-
-// Set |gamepadService| to a new {{GamepadService}}.
-const gamepadService = new GamepadService();
+document.addEventListener("DOMContentLoaded", () => {
+  const consumersDiv = document.getElementById("consumers");
+  document.getElementById("add-consumer").addEventListener("click", () => {
+    Consumer.attachConsumer(consumersDiv);
+  });
+});
