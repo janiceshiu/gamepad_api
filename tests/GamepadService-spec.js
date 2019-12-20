@@ -23,6 +23,7 @@ describe("index.html", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
+    consumers.remove();
   });
 });
 
