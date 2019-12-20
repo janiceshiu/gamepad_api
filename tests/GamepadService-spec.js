@@ -23,6 +23,7 @@ describe("Gamepad API", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
+
     consumers.remove();
   });
 });
@@ -57,6 +58,8 @@ describe("Consumer", () => {
     expect(consumer.id).toContain("consumer-");
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
+
+    consumers.remove();
   });
 
   it("can activate itself", async () => {
@@ -76,6 +79,8 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
+
+    consumers.remove();
   });
 
   it("can deactivate itself", async () => {
@@ -88,6 +93,7 @@ describe("Consumer", () => {
       consumer.onload = resolve;
     });
     consumer.toggleActiveState();
+
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
 
@@ -95,5 +101,7 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
+
+    consumers.remove();
   });
 });
