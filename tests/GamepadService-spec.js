@@ -1,11 +1,25 @@
 import { Consumer } from "../src/Consumer.js";
 import { GamepadService } from "../src/GamepadService.js";
 
-describe("Gamepad API", () => {
-  it("toggles a consumer's isActive when consumer is clicked", async () => {
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
+describe("GamepadService", () => {
+  it("can be constructed", () => {
+    expect(new GamepadService()).toBeTruthy();
+  });
+});
 
+describe("Consumer", () => {
+  const consumers = document.createElement("div");
+  document.body.append(consumers);
+
+  beforeEach(() => {
+    consumers.innerHTML = "";
+  });
+
+  afterAll(() => {
+    consumers.remove();
+  });
+
+  it("toggles a consumer's isActive when consumer is clicked", async () => {
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
@@ -23,18 +37,8 @@ describe("Gamepad API", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
-
-    consumers.remove();
   });
-});
 
-describe("GamepadService", () => {
-  it("can be constructed", () => {
-    expect(new GamepadService()).toBeTruthy();
-  });
-});
-
-describe("Consumer", () => {
   it("can be constructed with default attributes", () => {
     const consumer = new Consumer();
 
@@ -44,28 +48,19 @@ describe("Consumer", () => {
   });
 
   it("can be constructed with default attributes and attached to a html element", async () => {
-    const consumers = document.createElement("div");
-    consumers.id = "consumers";
-    document.body.append(consumers);
-
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
       consumer.onload = resolve;
     });
 
-    expect(consumer.parentElement.id).toBe("consumers");
+    expect(consumer.parentElement).toBe(consumers);
     expect(consumer.id).toContain("consumer-");
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
-
-    consumers.remove();
   });
 
   it("can activate itself", async () => {
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
-
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
@@ -79,14 +74,9 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
-
-    consumers.remove();
   });
 
   it("can deactivate itself", async () => {
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
-
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
@@ -101,14 +91,9 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(false);
     expect(consumer.hasGesture).toBe(false);
-
-    consumers.remove();
   });
 
   it("fires an `activestatechange` event when consumer.toggleActiveState() is called", async () => {
-    const consumers = document.createElement("div");
-    document.body.append(consumers);
-
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
@@ -125,7 +110,5 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
-
-    consumers.remove();
   });
 });
