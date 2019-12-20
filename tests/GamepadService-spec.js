@@ -16,9 +16,9 @@ describe("Gamepad API", () => {
     expect(consumer.hasGesture).toBe(false);
 
     const clickPromise = new Promise(resolve => {
-      consumer.onclick = resolve;
+      consumer.contentDocument.onclick = resolve;
     });
-    consumer.click();
+    consumer.contentDocument.body.click();
     await clickPromise;
 
     expect(consumer.isActive).toBe(true);
