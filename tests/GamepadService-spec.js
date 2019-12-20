@@ -1,7 +1,7 @@
 import { Consumer } from "../src/Consumer.js";
 import { GamepadService } from "../src/GamepadService.js";
 
-describe("index.html", () => {
+describe("Gamepad API", () => {
   it("toggles a consumer's isActive when consumer is clicked", async () => {
     const consumers = document.createElement("div");
     document.body.append(consumers);
