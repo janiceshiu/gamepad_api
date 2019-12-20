@@ -1,12 +1,35 @@
 import { Consumer } from "../src/Consumer.js";
 import { GamepadService } from "../src/GamepadService.js";
 
+describe("index.html", () => {
+  it("toggles a consumer's isActive when consumer is clicked", async () => {
+    const consumers = document.createElement("div");
+    document.body.append(consumers);
+
+    const consumer = Consumer.attachConsumer(consumers);
+
+    await new Promise(resolve => {
+      consumer.onload = resolve;
+    });
+
+    expect(consumer.isActive).toBe(false);
+    expect(consumer.hasGesture).toBe(false);
+
+    const clickPromise = new Promise(resolve => {
+      consumer.onclick = resolve;
+    });
+    consumer.click();
+    await clickPromise;
+
+    expect(consumer.isActive).toBe(true);
+    expect(consumer.hasGesture).toBe(false);
+  });
+});
+
 describe("GamepadService", () => {
   it("can be constructed", () => {
     expect(new GamepadService()).toBeTruthy();
   });
-
-
 });
 
 describe("Consumer", () => {
@@ -35,7 +58,7 @@ describe("Consumer", () => {
     expect(consumer.hasGesture).toBe(false);
   });
 
-  it("can activate itself", async() => {
+  it("can activate itself", async () => {
     const consumers = document.createElement("div");
     document.body.append(consumers);
 
@@ -54,7 +77,7 @@ describe("Consumer", () => {
     expect(consumer.hasGesture).toBe(false);
   });
 
-  it("can deactivate itself", async() => {
+  it("can deactivate itself", async () => {
     const consumers = document.createElement("div");
     document.body.append(consumers);
 
