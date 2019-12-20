@@ -104,4 +104,28 @@ describe("Consumer", () => {
 
     consumers.remove();
   });
+
+  it("fires an `activestatechange` event when consumer.toggleActiveState() is called", async () => {
+    const consumers = document.createElement("div");
+    document.body.append(consumers);
+
+    const consumer = Consumer.attachConsumer(consumers);
+
+    await new Promise(resolve => {
+      consumer.onload = resolve;
+    });
+
+    expect(consumer.isActive).toBe(false);
+
+    const toggleActiveStatePromise = new Promise(resolve => {
+      consumer.addEventListener("activestatechange", resolve);
+    });
+    consumer.toggleActiveState();
+    await toggleActiveStatePromise;
+
+    expect(consumer.isActive).toBe(true);
+    expect(consumer.hasGesture).toBe(false);
+
+    consumers.remove();
+  });
 });
