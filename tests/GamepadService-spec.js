@@ -153,4 +153,10 @@ describe("Gamepad", () => {
     expect(gamepad.axes).toEqual([]);
     expect(gamepad.buttons).toEqual([]);
   });
+
+  it("is an extended HTMLDivElement", () => {
+    const gamepad = new Gamepad()
+
+    expect(gamepad.tagName).toEqual("DIV");
+  });
 });
