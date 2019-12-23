@@ -1,5 +1,5 @@
 import { Consumer } from "./Consumer.js";
-import { Gamepad } from "./Gamepad.js/";
+import { Gamepad } from "./Gamepad.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const consumersDiv = document.getElementById("consumers");
