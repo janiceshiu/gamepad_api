@@ -1,4 +1,5 @@
 import { Consumer } from "../src/Consumer.js";
+import { Gamepad } from "../src/Gamepad.js";
 import { GamepadService } from "../src/GamepadService.js";
 
 describe("GamepadService", () => {
@@ -110,5 +111,13 @@ describe("Consumer", () => {
 
     expect(consumer.isActive).toBe(true);
     expect(consumer.hasGesture).toBe(false);
+  });
+});
+
+describe("Gamepad", () => {
+  it("can be constructed ", () => {
+    const gamepad = new Gamepad();
+
+    expect(gamepad).toBeTruthy();
   });
 });
