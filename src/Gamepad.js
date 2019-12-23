@@ -28,7 +28,15 @@ export class Gamepad extends HTMLDivElement {
     this._timestamp = new Date().getTime();
     this._mapping = []; // temporary value for now
     this._axes = [0.0, 0.0, 0.0, 0.0];
-    this._buttons = []; // temporary value for now
+    this._buttons = gamepadButtons();
+
+    function gamepadButtons() {
+      const buttons = Array(16)
+        .fill(undefined)
+        .map(x => new GamepadButton());
+
+      return Object.freeze(buttons);
+    }
   }
 
   get id() {

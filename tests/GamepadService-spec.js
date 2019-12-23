@@ -138,7 +138,7 @@ describe("Gamepad", () => {
     expect(gamepad.connected).toBe(false);
     expect(gamepad.mapping).toEqual([]);
     expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
-    expect(gamepad.buttons).toEqual([]);
+    expect(gamepad.buttons.length).toEqual(16);
   });
 
   it("can be constructed with default attributes and attached to a html element ", () => {
@@ -152,7 +152,7 @@ describe("Gamepad", () => {
     expect(gamepad.connected).toBe(false);
     expect(gamepad.mapping).toEqual([]);
     expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
-    expect(gamepad.buttons).toEqual([]);
+    expect(gamepad.buttons.length).toEqual(16);
   });
 
   it("is an extended HTMLDivElement", () => {
