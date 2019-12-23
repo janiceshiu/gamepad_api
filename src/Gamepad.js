@@ -1,6 +1,6 @@
 let gamepadId = 0;
 
-export class Gamepad extends HTMLElement {
+export class Gamepad extends HTMLDivElement {
   constructor() {
     super();
 
@@ -65,4 +65,4 @@ export class Gamepad extends HTMLElement {
   }
 }
 
-customElements.define("gamepad-gamepad", Gamepad);
+customElements.define("gamepad-gamepad", Gamepad, { extends: "div" });
