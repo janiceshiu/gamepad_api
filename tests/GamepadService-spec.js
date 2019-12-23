@@ -137,7 +137,7 @@ describe("Gamepad", () => {
     expect(Number.isInteger(gamepad.index)).toBe(true);
     expect(gamepad.connected).toBe(false);
     expect(gamepad.mapping).toEqual([]);
-    expect(gamepad.axes).toEqual([]);
+    expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
     expect(gamepad.buttons).toEqual([]);
   });
 
@@ -151,7 +151,7 @@ describe("Gamepad", () => {
     expect(Number.isInteger(gamepad.index)).toBe(true);
     expect(gamepad.connected).toBe(false);
     expect(gamepad.mapping).toEqual([]);
-    expect(gamepad.axes).toEqual([]);
+    expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
     expect(gamepad.buttons).toEqual([]);
   });
 

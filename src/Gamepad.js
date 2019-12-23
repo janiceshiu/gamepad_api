@@ -1,5 +1,7 @@
 let gamepadId = 0;
 
+import { GamepadButton } from "./GamepadButton.js";
+
 export class Gamepad extends HTMLDivElement {
   constructor() {
     super();
@@ -25,7 +27,7 @@ export class Gamepad extends HTMLDivElement {
     this._connected = false;
     this._timestamp = new Date().getTime();
     this._mapping = []; // temporary value for now
-    this._axes = []; // temporary value for now
+    this._axes = [0.0, 0.0, 0.0, 0.0];
     this._buttons = []; // temporary value for now
   }
 
