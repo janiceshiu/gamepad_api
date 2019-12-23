@@ -155,7 +155,7 @@ describe("Gamepad", () => {
   });
 
   it("is an extended HTMLDivElement", () => {
-    const gamepad = new Gamepad()
+    const gamepad = new Gamepad();
 
     expect(gamepad.tagName).toEqual("DIV");
   });
