@@ -163,8 +163,13 @@ describe("Gamepad", () => {
 });
 
 describe("GamepadButton", () => {
-  it("can be constructed", () => {
-    expect(new GamepadButton()).toBeTruthy();
+  it("can be constructed with default GamepadButton attributes", () => {
+    const button = new GamepadButton();
+
+    expect(button).toBeTruthy();
+    expect(button.pressed).toBe(false);
+    expect(button.touched).toBe(false);
+    expect(button.value).toBe(0.0);
   });
 
   it("is an extended HTMLButtonElement", () => {
