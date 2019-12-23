@@ -115,9 +115,26 @@ describe("Consumer", () => {
 });
 
 describe("Gamepad", () => {
+  const gamepads = document.createElement("div");
+  document.body.append(gamepads);
+
+  beforeEach(() => {
+    gamepads.innerHTML = "";
+  });
+
+  afterAll(() => {
+    gamepads.remove();
+  });
+
   it("can be constructed ", () => {
     const gamepad = new Gamepad();
 
     expect(gamepad).toBeTruthy();
+  });
+
+  it("can be constructed with default attributes and attached to a html element ", () => {
+    const gamepad = Gamepad.attachGamepad(gamepads);
+
+    expect(gamepad.parentElement).toBe(gamepads);
   });
 });
