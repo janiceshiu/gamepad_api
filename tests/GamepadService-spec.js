@@ -1,5 +1,6 @@
 import { Consumer } from "../src/Consumer.js";
 import { Gamepad } from "../src/Gamepad.js";
+import { GamepadButton } from "../src/GamepadButton.js";
 import { GamepadService } from "../src/GamepadService.js";
 
 describe("GamepadService", () => {
@@ -158,5 +159,17 @@ describe("Gamepad", () => {
     const gamepad = new Gamepad();
 
     expect(gamepad.tagName).toEqual("DIV");
+  });
+});
+
+describe("GamepadButton", () => {
+  it("can be constructed", () => {
+    expect(new GamepadButton()).toBeTruthy();
+  });
+
+  it("is an extended HTMLButtonElement", () => {
+    const button = new GamepadButton();
+
+    expect(button.tagName).toEqual("BUTTON");
   });
 });
