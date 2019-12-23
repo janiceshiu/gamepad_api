@@ -126,15 +126,31 @@ describe("Gamepad", () => {
     gamepads.remove();
   });
 
-  it("can be constructed ", () => {
+  it("can be constructed with default elements ", () => {
     const gamepad = new Gamepad();
 
     expect(gamepad).toBeTruthy();
+
+    expect(gamepad).toBeTruthy();
+    expect(Number.isInteger(gamepad.id)).toBe(true);
+    expect(Number.isInteger(gamepad.index)).toBe(true);
+    expect(gamepad.connected).toBe(false);
+    expect(gamepad.mapping).toEqual([]);
+    expect(gamepad.axes).toEqual([]);
+    expect(gamepad.buttons).toEqual([]);
   });
 
   it("can be constructed with default attributes and attached to a html element ", () => {
     const gamepad = Gamepad.attachGamepad(gamepads);
 
     expect(gamepad.parentElement).toBe(gamepads);
+
+    expect(gamepad).toBeTruthy();
+    expect(Number.isInteger(gamepad.id)).toBe(true);
+    expect(Number.isInteger(gamepad.index)).toBe(true);
+    expect(gamepad.connected).toBe(false);
+    expect(gamepad.mapping).toEqual([]);
+    expect(gamepad.axes).toEqual([]);
+    expect(gamepad.buttons).toEqual([]);
   });
 });
