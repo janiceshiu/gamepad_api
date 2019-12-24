@@ -9,6 +9,12 @@ export class GamingDeviceButton extends HTMLButtonElement {
 
     this.innerHTML = `button ${buttonNumber + 1}`;
     this.type = "button";
+
+    this.addEventListener("click", () => {
+      // connect the button's gamepad
+      const gamingDevice = event.target.parentElement.parentElement;
+      gamingDevice.connect();
+    });
   }
 
   get pressed() {

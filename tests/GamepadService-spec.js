@@ -161,6 +161,17 @@ describe("GamingDevice", () => {
     expect(gamepadDevice.children[1].childElementCount).toEqual(18);
   });
 
+  it("changes its connected status to true when any one of its buttons is clicked", () => {
+    const gamingDevice = new GamingDevice();
+
+    expect(gamingDevice.connected).toEqual(false);
+
+    const buttonIndex = Math.floor(Math.random() * gamingDevice.buttons.length);
+    gamingDevice.buttons[buttonIndex].click();
+
+    expect(gamingDevice.connected).toEqual(true);
+  });
+
   it("is an extended HTMLDivElement", () => {
     const gamingDevice = new GamingDevice();
 

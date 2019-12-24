@@ -17,6 +17,9 @@ export class GamingDevice extends HTMLDivElement {
           display: inline-block;
           margin: 5px;
         }
+        .connected {
+          background-color: lightblue;
+        }
       </style>
       Hello gamepad ${id}!
     `;
@@ -44,6 +47,11 @@ export class GamingDevice extends HTMLDivElement {
       gamingDevice.buttons.map(b => buttonsDiv.append(b));
       gamingDevice.append(buttonsDiv);
     }
+  }
+
+  connect() {
+    this._connected = true;
+    this.classList.add("connected");
   }
 
   get id() {
