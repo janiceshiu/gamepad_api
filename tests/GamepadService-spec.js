@@ -134,10 +134,7 @@ describe("GamingDevice", () => {
 
     expect(gamingDevice).toBeTruthy();
     expect(Number.isInteger(gamingDevice.id)).toBe(true);
-    expect(Number.isInteger(gamingDevice.index)).toBe(true);
     expect(gamingDevice.connected).toBe(false);
-    expect(gamingDevice.mapping).toEqual([]);
-    expect(gamingDevice.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
     expect(gamingDevice.buttons.length).toEqual(16);
   });
 
@@ -148,10 +145,7 @@ describe("GamingDevice", () => {
 
     expect(gamepadDevice).toBeTruthy();
     expect(Number.isInteger(gamepadDevice.id)).toBe(true);
-    expect(Number.isInteger(gamepadDevice.index)).toBe(true);
     expect(gamepadDevice.connected).toBe(false);
-    expect(gamepadDevice.mapping).toEqual([]);
-    expect(gamepadDevice.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
     expect(gamepadDevice.buttons.length).toEqual(16);
   });
 

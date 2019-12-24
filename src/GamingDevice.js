@@ -23,11 +23,7 @@ export class GamingDevice extends HTMLDivElement {
 
     // set default attributes
     this._id = id;
-    this._index = 0; // temporary value for now
     this._connected = false;
-    this._timestamp = new Date().getTime();
-    this._mapping = []; // temporary value for now
-    this._axes = [0.0, 0.0, 0.0, 0.0];
     this._buttons = gamepadButtons();
 
     function gamepadButtons() {
@@ -43,24 +39,8 @@ export class GamingDevice extends HTMLDivElement {
     return this._id;
   }
 
-  get index() {
-    return this._index;
-  }
-
   get connected() {
     return this._connected;
-  }
-
-  get timestamp() {
-    return this._timestamp;
-  }
-
-  get mapping() {
-    return this._mapping;
-  }
-
-  get axes() {
-    return this._axes;
   }
 
   get buttons() {
