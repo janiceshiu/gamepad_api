@@ -149,7 +149,7 @@ describe("GamingDevice", () => {
     expect(gamingDevice.buttons.length).toEqual(10);
   });
 
-  it("can be constructed with default attributes and attached to a html element ", () => {
+  it("can be constructed with default attributes and contains the correct html elements", () => {
     const gamepadDevice = GamingDevice.attachGamingDevice(gamingDevices);
 
     expect(gamepadDevice.parentElement).toBe(gamingDevices);
@@ -158,6 +158,7 @@ describe("GamingDevice", () => {
     expect(Number.isInteger(gamepadDevice.id)).toBe(true);
     expect(gamepadDevice.connected).toBe(false);
     expect(gamepadDevice.buttons.length).toEqual(18);
+    expect(gamepadDevice.children[1].childElementCount).toEqual(18);
   });
 
   it("is an extended HTMLDivElement", () => {

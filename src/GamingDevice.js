@@ -27,12 +27,22 @@ export class GamingDevice extends HTMLDivElement {
     this._connected = false;
     this._buttons = gamingDeviceButtons();
 
+    addButtonsToButtonDiv(this);
+
     function gamingDeviceButtons() {
       const buttons = Array(numOfButtons)
         .fill()
         .map((_, i) => new GamingDeviceButton(i));
 
       return Object.freeze(buttons);
+    }
+
+    function addButtonsToButtonDiv(gamingDevice) {
+      const buttonsDiv = document.createElement("div");
+      buttonsDiv.id = `gaming-device-${id}-buttons`;
+
+      gamingDevice.buttons.map(b => buttonsDiv.append(b));
+      gamingDevice.append(buttonsDiv);
     }
   }
 
