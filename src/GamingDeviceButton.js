@@ -1,11 +1,14 @@
 export class GamingDeviceButton extends HTMLButtonElement {
-  constructor() {
+  constructor(buttonNumber) {
     super();
 
     // set default attributes
     this._pressed = false;
     this._touched = false;
     this._value = 0.0;
+
+    this.innerHTML = `button ${buttonNumber + 1}`;
+    this.type = "button";
   }
 
   get pressed() {

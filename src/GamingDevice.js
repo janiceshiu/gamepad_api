@@ -1,9 +1,10 @@
 let gamingDeviceId = 0;
+const defaultNumOfButtons = 18;
 
 import { GamingDeviceButton } from "./GamingDeviceButton.js";
 
 export class GamingDevice extends HTMLDivElement {
-  constructor() {
+  constructor(numOfButtons = defaultNumOfButtons) {
     super();
 
     const id = gamingDeviceId++;
@@ -27,9 +28,9 @@ export class GamingDevice extends HTMLDivElement {
     this._buttons = gamingDeviceButtons();
 
     function gamingDeviceButtons() {
-      const buttons = Array(16)
-        .fill(undefined)
-        .map(x => new GamingDeviceButton());
+      const buttons = Array(numOfButtons)
+        .fill()
+        .map((_, i) => new GamingDeviceButton(i));
 
       return Object.freeze(buttons);
     }
@@ -47,8 +48,8 @@ export class GamingDevice extends HTMLDivElement {
     return this._buttons;
   }
 
-  static attachGamingDevice(htmlElement) {
-    const g = new GamingDevice();
+  static attachGamingDevice(htmlElement, numOfButtons = defaultNumOfButtons) {
+    const g = new GamingDevice(numOfButtons);
     htmlElement.append(g);
 
     return g;

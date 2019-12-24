@@ -127,7 +127,7 @@ describe("GamingDevice", () => {
     gamingDevices.remove();
   });
 
-  it("can be constructed with default elements ", () => {
+  it("can be constructed with default attributes ", () => {
     const gamingDevice = new GamingDevice();
 
     expect(gamingDevice).toBeTruthy();
@@ -135,7 +135,18 @@ describe("GamingDevice", () => {
     expect(gamingDevice).toBeTruthy();
     expect(Number.isInteger(gamingDevice.id)).toBe(true);
     expect(gamingDevice.connected).toBe(false);
-    expect(gamingDevice.buttons.length).toEqual(16);
+    expect(gamingDevice.buttons.length).toEqual(18);
+  });
+
+  it("has the correct number of buttons when number of buttons is specified", () => {
+    const gamingDevice = new GamingDevice(10);
+
+    expect(gamingDevice).toBeTruthy();
+
+    expect(gamingDevice).toBeTruthy();
+    expect(Number.isInteger(gamingDevice.id)).toBe(true);
+    expect(gamingDevice.connected).toBe(false);
+    expect(gamingDevice.buttons.length).toEqual(10);
   });
 
   it("can be constructed with default attributes and attached to a html element ", () => {
@@ -146,7 +157,7 @@ describe("GamingDevice", () => {
     expect(gamepadDevice).toBeTruthy();
     expect(Number.isInteger(gamepadDevice.id)).toBe(true);
     expect(gamepadDevice.connected).toBe(false);
-    expect(gamepadDevice.buttons.length).toEqual(16);
+    expect(gamepadDevice.buttons.length).toEqual(18);
   });
 
   it("is an extended HTMLDivElement", () => {
