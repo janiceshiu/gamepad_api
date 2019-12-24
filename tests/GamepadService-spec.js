@@ -1,7 +1,7 @@
 import { Consumer } from "../src/Consumer.js";
-import { GamingDevice } from "../src/GamingDevice.js";
-import { GamepadButton } from "../src/GamepadButton.js";
 import { GamepadService } from "../src/GamepadService.js";
+import { GamingDevice } from "../src/GamingDevice.js";
+import { GamingDeviceButton } from "../src/GamingDeviceButton.js";
 
 describe("GamepadService", () => {
   it("can be constructed", () => {
@@ -156,9 +156,9 @@ describe("GamingDevice", () => {
   });
 });
 
-describe("GamepadButton", () => {
-  it("can be constructed with default GamepadButton attributes", () => {
-    const button = new GamepadButton();
+describe("GamingDeviceButton", () => {
+  it("can be constructed with default GamingDeviceButton attributes", () => {
+    const button = new GamingDeviceButton();
 
     expect(button).toBeTruthy();
     expect(button.pressed).toBe(false);
@@ -167,7 +167,7 @@ describe("GamepadButton", () => {
   });
 
   it("is an extended HTMLButtonElement", () => {
-    const button = new GamepadButton();
+    const button = new GamingDeviceButton();
 
     expect(button.tagName).toEqual("BUTTON");
   });

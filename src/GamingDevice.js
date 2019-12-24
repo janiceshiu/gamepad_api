@@ -1,6 +1,6 @@
 let gamingDeviceId = 0;
 
-import { GamepadButton } from "./GamepadButton.js";
+import { GamingDeviceButton } from "./GamingDeviceButton.js";
 
 export class GamingDevice extends HTMLDivElement {
   constructor() {
@@ -24,12 +24,12 @@ export class GamingDevice extends HTMLDivElement {
     // set default attributes
     this._id = id;
     this._connected = false;
-    this._buttons = gamepadButtons();
+    this._buttons = gamingDeviceButtons();
 
-    function gamepadButtons() {
+    function gamingDeviceButtons() {
       const buttons = Array(16)
         .fill(undefined)
-        .map(x => new GamepadButton());
+        .map(x => new GamingDeviceButton());
 
       return Object.freeze(buttons);
     }

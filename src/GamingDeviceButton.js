@@ -1,4 +1,4 @@
-export class GamepadButton extends HTMLButtonElement {
+export class GamingDeviceButton extends HTMLButtonElement {
   constructor() {
     super();
 
@@ -21,4 +21,6 @@ export class GamepadButton extends HTMLButtonElement {
   }
 }
 
-customElements.define("gamepad-button", GamepadButton, { extends: "button" });
+customElements.define("gamepad-button", GamingDeviceButton, {
+  extends: "button"
+});
