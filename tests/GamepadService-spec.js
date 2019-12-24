@@ -1,5 +1,5 @@
 import { Consumer } from "../src/Consumer.js";
-import { Gamepad } from "../src/Gamepad.js";
+import { GamingDevice } from "../src/GamingDevice.js";
 import { GamepadButton } from "../src/GamepadButton.js";
 import { GamepadService } from "../src/GamepadService.js";
 
@@ -115,50 +115,50 @@ describe("Consumer", () => {
   });
 });
 
-describe("Gamepad", () => {
-  const gamepads = document.createElement("div");
-  document.body.append(gamepads);
+describe("GamingDevice", () => {
+  const gamingDevices = document.createElement("div");
+  document.body.append(gamingDevices);
 
   beforeEach(() => {
-    gamepads.innerHTML = "";
+    gamingDevices.innerHTML = "";
   });
 
   afterAll(() => {
-    gamepads.remove();
+    gamingDevices.remove();
   });
 
   it("can be constructed with default elements ", () => {
-    const gamepad = new Gamepad();
+    const gamingDevice = new GamingDevice();
 
-    expect(gamepad).toBeTruthy();
+    expect(gamingDevice).toBeTruthy();
 
-    expect(gamepad).toBeTruthy();
-    expect(Number.isInteger(gamepad.id)).toBe(true);
-    expect(Number.isInteger(gamepad.index)).toBe(true);
-    expect(gamepad.connected).toBe(false);
-    expect(gamepad.mapping).toEqual([]);
-    expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
-    expect(gamepad.buttons.length).toEqual(16);
+    expect(gamingDevice).toBeTruthy();
+    expect(Number.isInteger(gamingDevice.id)).toBe(true);
+    expect(Number.isInteger(gamingDevice.index)).toBe(true);
+    expect(gamingDevice.connected).toBe(false);
+    expect(gamingDevice.mapping).toEqual([]);
+    expect(gamingDevice.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
+    expect(gamingDevice.buttons.length).toEqual(16);
   });
 
   it("can be constructed with default attributes and attached to a html element ", () => {
-    const gamepad = Gamepad.attachGamepad(gamepads);
+    const gamepadDevice = GamingDevice.attachGamingDevice(gamingDevices);
 
-    expect(gamepad.parentElement).toBe(gamepads);
+    expect(gamepadDevice.parentElement).toBe(gamingDevices);
 
-    expect(gamepad).toBeTruthy();
-    expect(Number.isInteger(gamepad.id)).toBe(true);
-    expect(Number.isInteger(gamepad.index)).toBe(true);
-    expect(gamepad.connected).toBe(false);
-    expect(gamepad.mapping).toEqual([]);
-    expect(gamepad.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
-    expect(gamepad.buttons.length).toEqual(16);
+    expect(gamepadDevice).toBeTruthy();
+    expect(Number.isInteger(gamepadDevice.id)).toBe(true);
+    expect(Number.isInteger(gamepadDevice.index)).toBe(true);
+    expect(gamepadDevice.connected).toBe(false);
+    expect(gamepadDevice.mapping).toEqual([]);
+    expect(gamepadDevice.axes).toEqual([0.0, 0.0, 0.0, 0.0]);
+    expect(gamepadDevice.buttons.length).toEqual(16);
   });
 
   it("is an extended HTMLDivElement", () => {
-    const gamepad = new Gamepad();
+    const gamingDevice = new GamingDevice();
 
-    expect(gamepad.tagName).toEqual("DIV");
+    expect(gamingDevice.tagName).toEqual("DIV");
   });
 });
 

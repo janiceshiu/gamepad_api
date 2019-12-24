@@ -1,17 +1,17 @@
-let gamepadId = 0;
+let gamingDeviceId = 0;
 
 import { GamepadButton } from "./GamepadButton.js";
 
-export class Gamepad extends HTMLDivElement {
+export class GamingDevice extends HTMLDivElement {
   constructor() {
     super();
 
-    const id = gamepadId++;
+    const id = gamingDeviceId++;
 
     // setup the gamepad's front end
     this.innerHTML = `
       <style>
-        .gamepad {
+        .gaming-device {
           border: 1px solid grey;
           display: inline-block;
           margin: 5px;
@@ -19,7 +19,7 @@ export class Gamepad extends HTMLDivElement {
       </style>
       Hello gamepad ${id}!
     `;
-    this.classList.add("gamepad");
+    this.classList.add("gaming-device");
 
     // set default attributes
     this._id = id;
@@ -67,12 +67,12 @@ export class Gamepad extends HTMLDivElement {
     return this._buttons;
   }
 
-  static attachGamepad(htmlElement) {
-    const g = new Gamepad();
+  static attachGamingDevice(htmlElement) {
+    const g = new GamingDevice();
     htmlElement.append(g);
 
     return g;
   }
 }
 
-customElements.define("gamepad-gamepad", Gamepad, { extends: "div" });
+customElements.define("gaming-device", GamingDevice, { extends: "div" });

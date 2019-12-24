@@ -1,5 +1,5 @@
 import { Consumer } from "./Consumer.js";
-import { Gamepad } from "./Gamepad.js";
+import { GamingDevice } from "./GamingDevice.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const consumersDiv = document.getElementById("consumers");
@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     Consumer.attachConsumer(consumersDiv);
   });
 
-  const gamepadsDiv = document.getElementById("gamepads");
-  document.getElementById("add-gamepad").addEventListener("click", () => {
-    Gamepad.attachGamepad(gamepadsDiv);
+  const gamingDevicesDiv = document.getElementById("gaming-devices");
+  document.getElementById("add-gaming-device").addEventListener("click", () => {
+    GamingDevice.attachGamingDevice(gamingDevicesDiv);
   });
 });
