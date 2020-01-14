@@ -1,7 +1,7 @@
+import { GamingDeviceButton } from "./GamingDeviceButton.js";
+
 let gamingDeviceId = 0;
 const defaultNumOfButtons = 18;
-
-import { GamingDeviceButton } from "./GamingDeviceButton.js";
 
 export class GamingDevice extends HTMLDivElement {
   constructor(numOfButtons = defaultNumOfButtons) {
