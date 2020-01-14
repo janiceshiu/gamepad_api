@@ -27,7 +27,7 @@ export class GamingDevice extends HTMLDivElement {
 
     // set default attributes
     this._id = id;
-    this._connected = false;
+    this._isConnected = false;
     this._buttons = gamingDeviceButtons();
 
     addButtonsToButtonDiv(this);
@@ -50,7 +50,7 @@ export class GamingDevice extends HTMLDivElement {
   }
 
   connect() {
-    this._connected = true;
+    this._isConnected = true;
     this.classList.add("connected");
   }
 
@@ -58,8 +58,8 @@ export class GamingDevice extends HTMLDivElement {
     return this._id;
   }
 
-  get connected() {
-    return this._connected;
+  get isConnected() {
+    return this._isConnected;
   }
 
   get buttons() {

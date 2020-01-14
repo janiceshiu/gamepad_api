@@ -134,7 +134,7 @@ describe("GamingDevice", () => {
 
     expect(gamingDevice).toBeTruthy();
     expect(Number.isInteger(gamingDevice.id)).toBe(true);
-    expect(gamingDevice.connected).toBe(false);
+    expect(gamingDevice.isConnected).toBe(false);
     expect(gamingDevice.buttons.length).toEqual(18);
   });
 
@@ -145,7 +145,7 @@ describe("GamingDevice", () => {
 
     expect(gamingDevice).toBeTruthy();
     expect(Number.isInteger(gamingDevice.id)).toBe(true);
-    expect(gamingDevice.connected).toBe(false);
+    expect(gamingDevice.isConnected).toBe(false);
     expect(gamingDevice.buttons.length).toEqual(10);
   });
 
@@ -156,20 +156,20 @@ describe("GamingDevice", () => {
 
     expect(gamepadDevice).toBeTruthy();
     expect(Number.isInteger(gamepadDevice.id)).toBe(true);
-    expect(gamepadDevice.connected).toBe(false);
+    expect(gamepadDevice.isConnected).toBe(false);
     expect(gamepadDevice.buttons.length).toEqual(18);
     expect(gamepadDevice.children[1].childElementCount).toEqual(18);
   });
 
-  it("changes its connected status to true when any one of its buttons is clicked", () => {
+  it("changes its isConnected status to true when any one of its buttons is clicked", () => {
     const gamingDevice = new GamingDevice();
 
-    expect(gamingDevice.connected).toEqual(false);
+    expect(gamingDevice.isConnected).toEqual(false);
 
     const buttonIndex = Math.floor(Math.random() * gamingDevice.buttons.length);
     gamingDevice.buttons[buttonIndex].click();
 
-    expect(gamingDevice.connected).toEqual(true);
+    expect(gamingDevice.isConnected).toEqual(true);
   });
 
   it("is an extended HTMLDivElement", () => {
