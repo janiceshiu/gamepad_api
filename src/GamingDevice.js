@@ -7,7 +7,10 @@ export class GamingDevice extends HTMLDivElement {
   constructor(numOfButtons = defaultNumOfButtons) {
     super();
 
-    const id = gamingDeviceId++;
+    // set default attributes
+    this._id = gamingDeviceId++;
+    this._isConnected = false;
+    this._buttons = gamingDeviceButtons();
 
     // setup the gamepad's front end
     this.innerHTML = `
@@ -21,14 +24,9 @@ export class GamingDevice extends HTMLDivElement {
           background-color: lightblue;
         }
       </style>
-      Hello gamepad ${id}!
+      Hello gamepad ${this.id}!
     `;
     this.classList.add("gaming-device");
-
-    // set default attributes
-    this._id = id;
-    this._isConnected = false;
-    this._buttons = gamingDeviceButtons();
 
     addButtonsToButtonDiv(this);
 
@@ -42,7 +40,7 @@ export class GamingDevice extends HTMLDivElement {
 
     function addButtonsToButtonDiv(gamingDevice) {
       const buttonsDiv = document.createElement("div");
-      buttonsDiv.id = `gaming-device-${id}-buttons`;
+      buttonsDiv.id = `gaming-device-${gamingDevice.id}-buttons`;
 
       gamingDevice.buttons.map(b => buttonsDiv.append(b));
       gamingDevice.append(buttonsDiv);
