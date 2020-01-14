@@ -132,7 +132,6 @@ describe("GamingDevice", () => {
 
     expect(gamingDevice).toBeTruthy();
 
-    expect(gamingDevice).toBeTruthy();
     expect(Number.isInteger(gamingDevice.id)).toBe(true);
     expect(gamingDevice.isConnected).toBe(false);
     expect(gamingDevice.buttons.length).toEqual(18);
