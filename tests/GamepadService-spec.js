@@ -4,7 +4,7 @@ import { GamingDevice } from "../src/GamingDevice.js";
 import { GamingDeviceButton } from "../src/GamingDeviceButton.js";
 
 describe("GamepadService", () => {
-  it("can be constructed", () => {
+  it("is constructed", () => {
     expect(new GamepadService()).toBeTruthy();
   });
 });
@@ -41,7 +41,7 @@ describe("Consumer", () => {
     expect(consumer.hasGesture).toBe(false);
   });
 
-  it("can be constructed with default attributes", () => {
+  it("is constructed with default attributes", () => {
     const consumer = new Consumer();
 
     expect(consumer).toBeTruthy();
@@ -49,7 +49,7 @@ describe("Consumer", () => {
     expect(consumer.hasGesture).toBe(false);
   });
 
-  it("can be constructed with default attributes and attached to a html element", async () => {
+  it("is constructed with default attributes and attached to a html element", async () => {
     const consumer = Consumer.attachConsumer(consumers);
 
     await new Promise(resolve => {
@@ -127,7 +127,7 @@ describe("GamingDevice", () => {
     gamingDevices.remove();
   });
 
-  it("can be constructed with default attributes ", () => {
+  it("is constructed with default attributes ", () => {
     const gamingDevice = new GamingDevice();
 
     expect(gamingDevice).toBeTruthy();
@@ -149,7 +149,7 @@ describe("GamingDevice", () => {
     expect(gamingDevice.buttons.length).toEqual(10);
   });
 
-  it("can be constructed with default attributes and contains the correct html elements", () => {
+  it("is constructed with default attributes and contains the correct html elements", () => {
     const gamepadDevice = GamingDevice.attachGamingDevice(gamingDevices);
 
     expect(gamepadDevice.parentElement).toBe(gamingDevices);
@@ -180,7 +180,7 @@ describe("GamingDevice", () => {
 });
 
 describe("GamingDeviceButton", () => {
-  it("can be constructed with default GamingDeviceButton attributes", () => {
+  it("is constructed with default GamingDeviceButton attributes", () => {
     const button = new GamingDeviceButton();
 
     expect(button).toBeTruthy();
