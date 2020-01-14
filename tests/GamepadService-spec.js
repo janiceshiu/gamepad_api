@@ -175,7 +175,7 @@ describe("GamingDevice", () => {
   it("is an extended HTMLDivElement", () => {
     const gamingDevice = new GamingDevice();
 
-    expect(gamingDevice.tagName).toEqual("DIV");
+    expect(gamingDevice instanceof HTMLDivElement).toBe(true);
   });
 });
 
@@ -192,6 +192,6 @@ describe("GamingDeviceButton", () => {
   it("is an extended HTMLButtonElement", () => {
     const button = new GamingDeviceButton();
 
-    expect(button.tagName).toEqual("BUTTON");
+    expect(button instanceof HTMLButtonElement).toBe(true);
   });
 });
